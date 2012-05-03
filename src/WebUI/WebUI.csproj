@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{483AC3D4-CCF6-4B84-B954-6492EC545C11}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Guidelines.WebUI</RootNamespace>
+    <AssemblyName>Guidelines.WebUI</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxMin">
+      <HintPath>..\..\packages\AjaxMin.4.46.4422.26284\lib\net20\AjaxMin.dll</HintPath>
+    </Reference>
+    <Reference Include="DataAnnotationsExtensions">
+      <HintPath>..\..\packages\DataAnnotationsExtensions.1.0.2.0\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="dotless.Core">
+      <HintPath>..\..\packages\dotless.1.2.4.0\lib\dotless.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EcmaScript.NET.modified">
+      <HintPath>..\..\packages\YUICompressor.NET.1.7.1.0\lib\net35\EcmaScript.NET.modified.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer, Version=3.1.5.463, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\ImageResizer.3.1.5\lib\ImageResizer.dll</HintPath>
+    </Reference>
+    <Reference Include="Jurassic">
+      <HintPath>..\..\packages\Jurassic.2.1.1\lib\Jurassic.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.1.2.11\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="SquishIt.Framework">
+      <HintPath>..\..\packages\SquishIt.0.8.6\lib\SquishIt.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Yahoo.Yui.Compressor">
+      <HintPath>..\..\packages\YUICompressor.NET.1.7.1.0\lib\net35\Yahoo.Yui.Compressor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionInvokers\ActionMethodResultInvokerFacade.cs" />
+    <Compile Include="ActionInvokers\CommandControllerActivator.cs" />
+    <Compile Include="ActionInvokers\CommandResultProcessor.cs" />
+    <Compile Include="ActionInvokers\IActionMethodResult.cs" />
+    <Compile Include="ActionInvokers\IActionResultInvoker.cs" />
+    <Compile Include="ActionInvokers\IocActionInvoker.cs" />
+    <Compile Include="ActionInvokers\IResultProcessor.cs" />
+    <Compile Include="ActionInvokers\QueryResultProcessor.cs" />
+    <Compile Include="ActionInvokers\ResultInvoker.cs" />
+    <Compile Include="ActionResults\CommandResult.cs" />
+    <Compile Include="ActionResults\DownloadResult.cs" />
+    <Compile Include="ActionResults\ImageResult.cs" />
+    <Compile Include="ActionResults\LargeJsonResult.cs" />
+    <Compile Include="ActionResults\QueryResult.cs" />
+    <Compile Include="Controllers\BundleController.cs" />
+    <Compile Include="Controllers\CommandController.cs" />
+    <Compile Include="Controllers\Expressions\CommandExpressions.cs" />
+    <Compile Include="Controllers\Expressions\JsonQueryExpressions.cs" />
+    <Compile Include="Controllers\Expressions\MappedJsonQueryExpressions.cs" />
+    <Compile Include="Controllers\Expressions\MappedQueryExpressions.cs" />
+    <Compile Include="Controllers\ResultExtensions\ContentControllerResults.cs" />
+    <Compile Include="Controllers\ResultExtensions\CusotomControllerResults.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\ResultExtensions\FileControllerResults.cs" />
+    <Compile Include="Controllers\ResultExtensions\JavascriptControllerResults.cs" />
+    <Compile Include="Controllers\ResultExtensions\JsonControllerResults.cs" />
+    <Compile Include="Controllers\ResultExtensions\PartialViewControllerResults.cs" />
+    <Compile Include="Controllers\Expressions\QueryExpressions.cs" />
+    <Compile Include="Controllers\ResultExtensions\RedirectControllerResults.cs" />
+    <Compile Include="Controllers\ResultExtensions\RedirectToActionControllerResults.cs" />
+    <Compile Include="Controllers\ResultExtensions\RedirectToRouteControllerResults.cs" />
+    <Compile Include="Controllers\ResultExtensions\RouteValuesHelpers.cs" />
+    <Compile Include="Controllers\ResultExtensions\ViewControllerResults.cs" />
+    <Compile Include="Errors\ErrorAspect.cs" />
+    <Compile Include="Errors\ErrorContext.cs" />
+    <Compile Include="Errors\IErrorAspect.cs" />
+    <Compile Include="Filters\AspectRegistrarFilter.cs" />
+    <Compile Include="HtmlHelpers\ErrorMessageGenerator.cs" />
+    <Compile Include="Properties\Resources-es.Designer.cs">
+      <DependentUpon>Resources-es.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ServiceLocatorDependencyResolver.cs" />
+    <Compile Include="Session\IContextAction.cs" />
+    <Compile Include="Session\IContextRegistrar.cs" />
+    <Compile Include="Session\TimeZoneAspect.cs" />
+    <Compile Include="SystemInfo.cs" />
+    <Compile Include="Tools\ControllerContextExtensions.cs" />
+    <Compile Include="Tools\HttpErrorHelper.cs" />
+    <Compile Include="Tools\JsonHelperExtension.cs" />
+    <Compile Include="UrlFinder.cs" />
+    <Compile Include="WebUIInfrastructureMarker.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources-es.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources-es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{9BC41FF7-EDBC-4367-B740-0302840DABAE}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
