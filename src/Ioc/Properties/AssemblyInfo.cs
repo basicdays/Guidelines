@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Guidelines.Ioc")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Guidelines.Ioc")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Infrastructure.Ioc")]
+[assembly: AssemblyCompany("LocationStation")]
+[assembly: AssemblyProduct("Guidelines.Ioc")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

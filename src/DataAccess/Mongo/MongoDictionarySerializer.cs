@@ -10,8 +10,23 @@ namespace Guidelines.DataAccess.Mongo
 	//The default mongo dictionary serializer turns them into nested sets arrays for key value pairs.
 	//This makes them unquerrable and unindexable to search off of.
 	//This turns the dictionary into an object with a key and value so they can be search for and indexed.
+	[Obsolete("Use BsonDictionaryOptions instead.")]
 	public class MongoDictionarySerializer<TKey, TValue> : IBsonSerializer
 	{
+		//todo finish new interface methods
+		public IBsonSerializationOptions GetDefaultSerializationOptions()
+		{
+			return null;
+		}
+
+		public BsonSerializationInfo GetMemberSerializationInfo(string memberName)
+		{
+			return null;
+		}
+		public BsonSerializationInfo GetItemSerializationInfo()
+		{
+			return null;
+		}
 
 		public object Deserialize(BsonReader bsonReader, Type nominalType, IBsonSerializationOptions options)
 		{

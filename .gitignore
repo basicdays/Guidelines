@@ -2,5 +2,6 @@ _ReSharper.*
 *.suo
 *.user
 *.swp
+*.nupkg
 [Bb]in/
 obj/
