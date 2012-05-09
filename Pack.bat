@@ -1,14 +1,12 @@
 @echo off
-if not exist build (
-	mkdir "build"
+if exist "build\packages" (
+	rmdir /S /Q "build\packages"
 )
-if not exist build\packages (
-	mkdir "build\packages"
-)
+mkdir "build\packages"
 
-"tools\NuGet" Update -self
-"tools\NuGet" Pack -OutputDirectory "build\packages" "src\DataAccess\DataAccess.csproj"
-"tools\NuGet" Pack -OutputDirectory "build\packages" "src\Domain\Domain.csproj"
-"tools\NuGet" Pack -OutputDirectory "build\packages" "src\Ioc\Ioc.csproj"
-"tools\NuGet" Pack -OutputDirectory "build\packages" "src\Mapping\Mapping.csproj"
-"tools\NuGet" Pack -OutputDirectory "build\packages" "src\WebUI\WebUI.csproj"
+"tools\NuGet" update -self
+"tools\NuGet" pack -symbols -outputDirectory "build\packages" "src\DataAccess\DataAccess.csproj"
+"tools\NuGet" pack -symbols -outputDirectory "build\packages" "src\Domain\Domain.csproj"
+"tools\NuGet" pack -symbols -outputDirectory "build\packages" "src\Ioc\Ioc.csproj"
+"tools\NuGet" pack -symbols -outputDirectory "build\packages" "src\Mapping\Mapping.csproj"
+"tools\NuGet" pack -symbols -outputDirectory "build\packages" "src\WebUI\WebUI.csproj"

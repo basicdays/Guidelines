@@ -8,5 +8,10 @@
 		<licenseUrl>https://github.com/basicdays/Guidelines/blob/master/LICENSE.txt</licenseUrl>
 		<description>$description$</description>
 		<copyright>Copyright 2012</copyright>
+
+		<dependencies>
+			<dependency id="Guidelines.Domain"/>
+			<dependency id="Guidelines.WebUI"/>
+		</dependencies>
 	</metadata>
 </package>
