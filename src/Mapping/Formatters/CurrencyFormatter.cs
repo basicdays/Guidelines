@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Guidelines.AutoMapper.Formatters
+namespace Guidelines.Mapping.Formatters
 {
     public class CurrencyFormatter : ValueFormatter<decimal>
     {

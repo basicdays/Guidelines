@@ -2,7 +2,7 @@
 using AutoMapper;
 using Guidelines.Domain;
 
-namespace Guidelines.AutoMapper.Formatters
+namespace Guidelines.Mapping.Formatters
 {
     public class ToLocalDateTimeFormatter : ValueFormatter<DateTime?>
     {

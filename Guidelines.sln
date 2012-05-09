@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMapper", "src\AutoMapper\AutoMapper.csproj", "{334D4A72-D3A8-441D-BE43-6F144C02EC78}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "src\DataAccess\DataAccess.csproj", "{6454E143-4557-41D9-88F5-107AF23B2725}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain.csproj", "{9BC41FF7-EDBC-4367-B740-0302840DABAE}"
@@ -11,16 +9,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ioc", "src\Ioc\Ioc.csproj",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI", "src\WebUI\WebUI.csproj", "{483AC3D4-CCF6-4B84-B954-6492EC545C11}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mapping", "src\Mapping\Mapping.csproj", "{334D4A72-D3A8-441D-BE43-6F144C02EC78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{334D4A72-D3A8-441D-BE43-6F144C02EC78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{334D4A72-D3A8-441D-BE43-6F144C02EC78}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{334D4A72-D3A8-441D-BE43-6F144C02EC78}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{334D4A72-D3A8-441D-BE43-6F144C02EC78}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6454E143-4557-41D9-88F5-107AF23B2725}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6454E143-4557-41D9-88F5-107AF23B2725}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6454E143-4557-41D9-88F5-107AF23B2725}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,6 +33,10 @@ Global
 		{483AC3D4-CCF6-4B84-B954-6492EC545C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{483AC3D4-CCF6-4B84-B954-6492EC545C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{483AC3D4-CCF6-4B84-B954-6492EC545C11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{334D4A72-D3A8-441D-BE43-6F144C02EC78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{334D4A72-D3A8-441D-BE43-6F144C02EC78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{334D4A72-D3A8-441D-BE43-6F144C02EC78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{334D4A72-D3A8-441D-BE43-6F144C02EC78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

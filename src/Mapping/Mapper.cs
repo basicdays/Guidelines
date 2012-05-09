@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Guidelines.Domain;
 
-namespace Guidelines.AutoMapper
+namespace Guidelines.Mapping
 {
     public class Mapper<TSource, TDestination> : IMapper<TSource, TDestination>
     {

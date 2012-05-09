@@ -1,7 +1,7 @@
 ﻿using System;
 using AutoMapper;
 
-namespace Guidelines.AutoMapper.Formatters
+namespace Guidelines.Mapping.Formatters
 {
     public class DateFormatter : ValueFormatter<DateTime>
     {

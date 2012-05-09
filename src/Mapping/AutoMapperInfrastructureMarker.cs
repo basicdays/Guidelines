@@ -1,4 +1,4 @@
-﻿namespace Guidelines.AutoMapper
+﻿namespace Guidelines.Mapping
 {
 	public class AutoMapperInfrastructureMarker
 	{

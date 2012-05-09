@@ -4,7 +4,7 @@ using System.Reflection;
 using AutoMapper;
 using Guidelines.Domain.Validation;
 
-namespace Guidelines.AutoMapper.Profiles
+namespace Guidelines.Mapping.Profiles
 {
     public class ValidationEngineMappings : Profile
     {
