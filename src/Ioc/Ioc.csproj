@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=2.1.267.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
-    </Reference>
     <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
     </Reference>
@@ -57,13 +53,14 @@
     <Compile Include="Adaptors\StructureMapAdaptor.cs" />
     <Compile Include="Adaptors\StructureMapFilterProvider.cs" />
     <Compile Include="Adaptors\StructureMapServiceContainer.cs" />
-    <Compile Include="AutoMapperTask.cs" />
+    <Compile Include="ApplicationServiceProvider.cs" />
     <Compile Include="Bootstrap\BootstrapException.cs" />
     <Compile Include="Bootstrap\Bootstrapper.cs" />
     <Compile Include="Bootstrap\BootstrapperExpressions.cs" />
     <Compile Include="Bootstrap\IBootstrapper.cs" />
     <Compile Include="Bootstrap\IBootstrapTask.cs" />
     <Compile Include="Conventions\CommandMessageConvention.cs" />
+    <Compile Include="Conventions\CommitHookConvention.cs" />
     <Compile Include="IDependencyRegistrar.cs" />
     <Compile Include="Bootstrap\SkipTaskAttribute.cs" />
     <Compile Include="Conventions\ActionProcessorConvention.cs" />

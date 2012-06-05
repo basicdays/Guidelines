@@ -45,25 +45,45 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CombGuidIdPolicy.cs" />
+    <Compile Include="Commands\CanRunWithCommand.cs" />
+    <Compile Include="Commands\CommandLogger.cs" />
     <Compile Include="Commands\CommandMessageProcessor.cs" />
     <Compile Include="Commands\CommandProcessor.cs" />
     <Compile Include="Commands\CommandResult.cs" />
+    <Compile Include="Commands\DomainEvents.cs" />
     <Compile Include="Commands\ICommandHandler.cs" />
     <Compile Include="Commands\ICommandMessageProcessor.cs" />
+    <Compile Include="Commands\ICommandPermision.cs" />
     <Compile Include="Commands\ICommandPreprocessor.cs" />
     <Compile Include="Commands\ICommandProcessor.cs" />
+    <Compile Include="Commands\ICommitHook.cs" />
+    <Compile Include="Commands\ICreateCommand.cs" />
+    <Compile Include="Commands\IDeleteCommand.cs" />
+    <Compile Include="Commands\IGetCommand.cs" />
+    <Compile Include="IPermision.cs" />
+    <Compile Include="Commands\IPostCommitCommandRegistrar.cs" />
     <Compile Include="Commands\IQueryHandler.cs" />
     <Compile Include="Commands\IQueryProcessor.cs" />
+    <Compile Include="IRepository.cs" />
+    <Compile Include="IsAccessibleWith.cs" />
+    <Compile Include="Commands\IUpdateCommand.cs" />
+    <Compile Include="Commands\PostCommitCommandRegistrar.cs" />
     <Compile Include="Commands\QueryProcessor.cs" />
     <Compile Include="Commands\QueryResult.cs" />
     <Compile Include="Commands\TypedCommandPreprocessorFacade.cs" />
+    <Compile Include="Commands\TypedCommitHookFacade.cs" />
     <Compile Include="DomainInfrastructureMarker.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="IApplicationServiceProvider.cs" />
     <Compile Include="IGenericMapper.cs" />
     <Compile Include="IIdPolicy.cs" />
+    <Compile Include="ILocalizedDateConverter.cs" />
     <Compile Include="IMapper.cs" />
-    <Compile Include="ISystemInfo.cs" />
+    <Compile Include="ILocalizationProvider.cs" />
+    <Compile Include="ITextSerializer.cs" />
+    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="LocalizedDateConverter.cs" />
     <Compile Include="NotPartOfSignatureAttribute.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,10 +97,19 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Specifications\AndSpecification.cs" />
+    <Compile Include="Specifications\Exists.cs" />
+    <Compile Include="Specifications\ISpecification.cs" />
+    <Compile Include="Specifications\NotSpecification.cs" />
+    <Compile Include="Specifications\OrSpecification.cs" />
+    <Compile Include="Specifications\SpecificationExtensions.cs" />
+    <Compile Include="Threading\ProducerConsumerQueue.cs" />
+    <Compile Include="Threading\ThreadLauncher.cs" />
     <Compile Include="Validation\CommandValidator.cs" />
     <Compile Include="Validation\DataAnnotationsEngine.cs" />
     <Compile Include="Validation\IValidationEngine.cs" />
     <Compile Include="Validation\NotFoundException.cs" />
+    <Compile Include="Validation\RecursiveValidator.cs" />
     <Compile Include="Validation\ValidateObjectAttribute.cs" />
     <Compile Include="Validation\ValidationEngineException.cs" />
     <Compile Include="Validation\ValidationEngineMessage.cs" />

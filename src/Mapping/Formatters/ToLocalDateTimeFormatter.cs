@@ -2,36 +2,26 @@
 using AutoMapper;
 using Guidelines.Domain;
 
-namespace Guidelines.Mapping.Formatters
+namespace Guidelines.AutoMapper.Formatters
 {
-    public class ToLocalDateTimeFormatter : ValueFormatter<DateTime?>
-    {
-        private readonly ISystemInfo _systemInfo;
+	public class ToLocalDateTimeFormatter : ValueFormatter<DateTime?>
+	{
+		private readonly ILocalizedDateConverter _converter;
 
-        public ToLocalDateTimeFormatter(ISystemInfo systemInfo)
-        {
-            _systemInfo = systemInfo;
-        }
+		public ToLocalDateTimeFormatter(ILocalizedDateConverter converter)
+		{
+			_converter = converter;
+		}
 
-        protected override string FormatValueCore(DateTime? value)
-        {
-            var timeZone = _systemInfo.GetCurrentTimeZone();
-            string result = null;
+		protected override string FormatValueCore(DateTime? value)
+		{
+			var result = string.Empty;
 
-            if(value.HasValue)
-            {
-                var timeToConvert = DateTime.SpecifyKind(value.Value, DateTimeKind.Utc);
+			if (value.HasValue) {
+				result = _converter.Convert(value.Value).ToString();
+			}
 
-                DateTime convertedDate = timeToConvert > DateTime.MinValue
-                    ? TimeZoneInfo.ConvertTimeFromUtc(timeToConvert, timeZone)
-                    : DateTime.MinValue;
-
-                DateTime localizedDate = timeZone != null ? convertedDate : timeToConvert;
-
-                result = localizedDate.ToString("d");
-            }
-            
-            return result;
-        }
-    }
+			return result;
+		}
+	}
 }

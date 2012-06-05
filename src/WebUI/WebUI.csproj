@@ -127,7 +127,7 @@
     <Compile Include="Session\IContextAction.cs" />
     <Compile Include="Session\IContextRegistrar.cs" />
     <Compile Include="Session\TimeZoneAspect.cs" />
-    <Compile Include="SystemInfo.cs" />
+    <Compile Include="LocalizationProvider.cs" />
     <Compile Include="Tools\ControllerContextExtensions.cs" />
     <Compile Include="Tools\HttpErrorHelper.cs" />
     <Compile Include="Tools\JsonHelperExtension.cs" />

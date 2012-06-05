@@ -53,17 +53,16 @@
   <ItemGroup>
     <Compile Include="DataAccessInfrastructureMarker.cs" />
     <Compile Include="Mongo\BaseCollectionProvider.cs" />
-    <Compile Include="Mongo\BaseMongoConnectionProvider.cs" />
     <Compile Include="DataAccessException.cs" />
     <Compile Include="Mongo\IMongoClassMap.cs" />
     <Compile Include="Mongo\IMongoCollectionProvider.cs" />
     <Compile Include="Mongo\IMongoConfigProvider.cs" />
-    <Compile Include="Mongo\IMongoConnectionProvider.cs" />
+    <Compile Include="Mongo\IMongoServerProvider.cs" />
     <Compile Include="Mongo\IMongoCredentialProvider.cs" />
     <Compile Include="Mongo\IMongoDataSource.cs" />
-    <Compile Include="Mongo\IMongoSetup.cs" />
+    <Compile Include="Mongo\MapReduceContainer.cs" />
     <Compile Include="Mongo\MongoClassMap.cs" />
-    <Compile Include="Mongo\MongoConnectionProvider.cs" />
+    <Compile Include="Mongo\MongoServerProvider.cs" />
     <Compile Include="Mongo\MongoDataSource.cs" />
     <Compile Include="Mongo\MongoDictionarySerializer.cs" />
     <Compile Include="Mongo\MongoDictionaryValue.cs" />

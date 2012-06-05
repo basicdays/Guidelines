@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design;
 using System.Linq;
-using System.Reflection;
 using Guidelines.Domain.Properties;
 
 namespace Guidelines.Domain.Validation
@@ -21,32 +19,30 @@ namespace Guidelines.Domain.Validation
 
 		public bool IsValid(object instance)
 		{
-			ValidationContext context = new ValidationContext(instance, _container, null);
-			return TryValidateObjectRecursive(instance, context, null, false);
+			var validator = new RecursiveValidator(true, _container);
+			return validator.TryValidateObject(instance);
 		}
 
 		public bool IsValid(object instance, out IEnumerable<ValidationEngineMessage> results)
 		{
-			var context = new ValidationContext(instance, _container, null);
-			var dataAnnotationResults = new List<ValidationResult>();
-			var valid = TryValidateObjectRecursive(instance, context, dataAnnotationResults, true);
+			var validator = new RecursiveValidator(true, _container);
+			var valid = validator.TryValidateObject(instance);
 
 			results = valid
 				? new List<ValidationEngineMessage>()
-				: _mapper.Map(dataAnnotationResults);
+				: _mapper.Map(validator.Results);
 			return valid;
 		}
 
 		public void Validate(object instance)
 		{
-			var context = new ValidationContext(instance, _container, null);
-			var dataAnnotationResults = new List<ValidationResult>();
-			var valid = TryValidateObjectRecursive(instance, context, dataAnnotationResults, true);
+			var validator = new RecursiveValidator(true, _container);
+			var valid = validator.TryValidateObject(instance);
 
 			if (!valid)
 			{
 				throw new ValidationEngineException(
-					_mapper.Map(dataAnnotationResults),
+					_mapper.Map(validator.Results),
 					Resources.Error_ValidationError);
 			}
 		}
@@ -74,47 +70,6 @@ namespace Guidelines.Domain.Validation
 					validationErrors,
 					Resources.Error_ValidationError);
 			}
-		}
-
-		//Lazily stolen from blog http://www.tsjensen.com/blog/2011/12/23/Custom+Recursive+Model+Validation+In+NET+Using+Data+Annotations.aspx
-		//Then modified to look at the attributes of child objects instead of properties per pauls suggestion.
-		/// <summary>
-		/// Warps validator try validate method with one that will validate all children on the object that are
-		/// taged with the ValidateObjectAttribute attribute.
-		/// </summary>
-		public static bool TryValidateObjectRecursive<T>(T obj, ValidationContext validationContext, ICollection<ValidationResult> results, bool validateAllProperties)
-		{
-			bool result = Validator.TryValidateObject(obj, validationContext, results, validateAllProperties);
-
-			IEnumerable<PropertyInfo> properties = obj.GetType().GetProperties().Where(prop =>
-				!prop.PropertyType.GetCustomAttributes(typeof(ValidateObjectAttribute), true).IsEmpty()
-			);
-
-			foreach (var value in properties.Select(prop => obj.GetPropertyValue(prop.Name)).Where(val => val != null))
-			{
-				var propertyValidationContext = new ValidationContext(value, validationContext.ServiceContainer, null);
-				result = TryValidateObjectRecursive(value, propertyValidationContext, results, validateAllProperties) && result;
-			}
-
-			IEnumerable<PropertyInfo> enumerables = obj.GetType().GetProperties().Where(prop => 
-				typeof(IEnumerable).IsAssignableFrom(prop.PropertyType)
-			);
-
-			foreach (IEnumerable asEnumerable in enumerables
-				.Select(prop => obj.GetPropertyValue(prop.Name))
-				.Where(val => val != null)
-				.Cast<IEnumerable>())
-			{
-				foreach (object enumObj in asEnumerable)
-				{
-					if(enumObj.HasAttribute(typeof(ValidateObjectAttribute))) {
-						var enumValidationContext = new ValidationContext(enumObj, validationContext.ServiceContainer, null);
-						result = TryValidateObjectRecursive(enumObj, enumValidationContext, results, validateAllProperties) && result;
-					}
-				}
-			}
-
-			return result;
 		}
 	}
 }

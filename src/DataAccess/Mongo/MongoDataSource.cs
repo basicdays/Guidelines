@@ -5,10 +5,10 @@ namespace Guidelines.DataAccess.Mongo
 {
 	public class MongoDataSource : IMongoDataSource
 	{
-		private readonly IMongoConnectionProvider _dataSource;
+		private readonly IMongoServerProvider _dataSource;
 		private readonly IMongoCredentialProvider _credentials;
 
-		public MongoDataSource(IMongoConnectionProvider dataSource, IMongoCredentialProvider credentials)
+		public MongoDataSource(IMongoServerProvider dataSource, IMongoCredentialProvider credentials)
 		{
 			_dataSource = dataSource;
 			_credentials = credentials;
@@ -16,7 +16,7 @@ namespace Guidelines.DataAccess.Mongo
 
 		protected string DatabaseName
 		{
-			get { return _credentials.GetDataBaseName(); }
+			get { return _credentials.DataBaseName; }
 		}
 
 		protected MongoCredentials Credentials

@@ -1,7 +1,7 @@
 ﻿using System.Web.Script.Serialization;
 using AutoMapper;
 
-namespace Guidelines.Mapping.Formatters
+namespace Guidelines.AutoMapper.Formatters
 {
     public class JsonFormatter : ValueFormatter<object>
     {

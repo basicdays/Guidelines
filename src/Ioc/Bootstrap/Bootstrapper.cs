@@ -34,6 +34,9 @@ namespace Guidelines.Ioc.Bootstrap
 		public IEnumerable<Registry> AdditionalRegistries { get; set; }
 		private IList<IDisposable> DisposableTasks { get; set; }
 
+		//Review: Because we have required dependencies being loaded via extension methods, we are allowing the creating of invalid bostrappers
+		//guarantied to fail.  While I know the extensions look pretty, they are dangerous.  They really should only be for optional configuration
+		//items that you can use to add in or modify things.  They should not be used to supply required components for function.
 		public Bootstrapper()
 		{
 			AdditionalRegistries = new List<Registry>();
@@ -75,7 +78,17 @@ namespace Guidelines.Ioc.Bootstrap
 
 					Log.Debug("Running " + type.Name);
 					stopwatch.Start();
-					bootstrapTask.Bootstrap();
+
+					try
+					{
+						bootstrapTask.Bootstrap();
+					}
+					catch (Exception e)
+					{
+						Log.Error("Bootstrapping Failed", e);
+						throw;
+					}
+
 					stopwatch.Stop();
 					Log.DebugFormat("Completed {0} in {1}ms", type.Name, stopwatch.ElapsedMilliseconds);
 					stopwatch.Reset();
