@@ -9,9 +9,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ioc", "src\Ioc\Ioc.csproj",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI", "src\WebUI\WebUI.csproj", "{483AC3D4-CCF6-4B84-B954-6492EC545C11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMapper", "src\Mapping\AutoMapper.csproj", "{334D4A72-D3A8-441D-BE43-6F144C02EC78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMapperTools", "src\Mapping\AutoMapperTools.csproj", "{334D4A72-D3A8-441D-BE43-6F144C02EC78}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Mongo", "src\DataAccess.Mongo\DataAccess.Mongo.csproj", "{73277BCB-AF14-41DB-BAF6-4B95B84874A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{895F6BC9-476F-4607-A970-BB5FAFCA7A30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{EDDB1F33-5AA2-4400-BFAE-D06060E5F358}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{7586ACFF-584B-42F2-819B-8D1A98A4C2C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,8 +49,20 @@ Global
 		{73277BCB-AF14-41DB-BAF6-4B95B84874A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73277BCB-AF14-41DB-BAF6-4B95B84874A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73277BCB-AF14-41DB-BAF6-4B95B84874A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDDB1F33-5AA2-4400-BFAE-D06060E5F358}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDDB1F33-5AA2-4400-BFAE-D06060E5F358}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDDB1F33-5AA2-4400-BFAE-D06060E5F358}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDDB1F33-5AA2-4400-BFAE-D06060E5F358}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7586ACFF-584B-42F2-819B-8D1A98A4C2C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7586ACFF-584B-42F2-819B-8D1A98A4C2C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7586ACFF-584B-42F2-819B-8D1A98A4C2C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7586ACFF-584B-42F2-819B-8D1A98A4C2C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EDDB1F33-5AA2-4400-BFAE-D06060E5F358} = {895F6BC9-476F-4607-A970-BB5FAFCA7A30}
+		{7586ACFF-584B-42F2-819B-8D1A98A4C2C6} = {895F6BC9-476F-4607-A970-BB5FAFCA7A30}
 	EndGlobalSection
 EndGlobal

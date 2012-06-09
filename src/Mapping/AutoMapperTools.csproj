@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="AutoMapperInfrastructureMarker.cs" />
     <Compile Include="AutoMapperTask.cs" />
+    <Compile Include="DefaultMapperTask.cs" />
+    <Compile Include="DefaultMappingsLoader.cs" />
     <Compile Include="Formatters\CurrencyFormatter.cs" />
     <Compile Include="Formatters\DateFormatter.cs" />
     <Compile Include="Formatters\EnumToNameFormatter.cs" />
@@ -61,7 +63,6 @@
     <Compile Include="Mapper.cs" />
     <Compile Include="Profiles\ValidationEngineMappings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resolvers\ByPropertyResolver.cs" />
     <Compile Include="Resolvers\CurrentUtcDateTimeResolver.cs" />
     <Compile Include="Resolvers\NewGuidIdResolver.cs" />
   </ItemGroup>

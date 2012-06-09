@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AutoMapper;
 using Guidelines.Domain;
 using Guidelines.Ioc.Bootstrap;
@@ -17,6 +18,7 @@ namespace Guidelines.AutoMapper
 		private readonly IConfiguration _configuration;
 		private readonly IEnumerable<Profile> _autoMapperProfiles;
 		private readonly IApplicationServiceProvider _container;
+		
 
 		public void Bootstrap()
 		{
@@ -27,6 +29,11 @@ namespace Guidelines.AutoMapper
 			}
 
 			_configuration.AllowNullDestinationValues = true;
+		}
+
+		public int Order
+		{
+			get { return 1; }
 		}
 	}
 }

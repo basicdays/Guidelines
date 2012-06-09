@@ -61,6 +61,7 @@
     <Compile Include="Bootstrap\IBootstrapTask.cs" />
     <Compile Include="Conventions\CommandMessageConvention.cs" />
     <Compile Include="Conventions\CommitHookConvention.cs" />
+    <Compile Include="Conventions\DefaultCrudConvention.cs" />
     <Compile Include="IDependencyRegistrar.cs" />
     <Compile Include="Bootstrap\SkipTaskAttribute.cs" />
     <Compile Include="Conventions\ActionProcessorConvention.cs" />

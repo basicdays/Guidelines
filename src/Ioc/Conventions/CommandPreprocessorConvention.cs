@@ -1,4 +1,5 @@
 ﻿using System;
+using Guidelines.Domain;
 using Guidelines.Domain.Commands;
 using StructureMap.Configuration.DSL;
 using StructureMap.Graph;

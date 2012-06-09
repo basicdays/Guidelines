@@ -3,5 +3,7 @@
 	public interface IBootstrapTask
 	{
 		void Bootstrap();
+
+		int Order { get; }
 	}
 }

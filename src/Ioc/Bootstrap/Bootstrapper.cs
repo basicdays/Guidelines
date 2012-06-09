@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 using StructureMap;
 using StructureMap.Configuration.DSL;
@@ -68,8 +69,8 @@ namespace Guidelines.Ioc.Bootstrap
 				Log.DebugFormat("Completed DependencyTask in {0}ms", stopwatch.ElapsedMilliseconds);
 				stopwatch.Reset();
 
-
-				foreach (var bootstrapTask in Container.GetAllInstances<IBootstrapTask>()) {
+				var startupTasks = Container.GetAllInstances<IBootstrapTask>().OrderBy(task => task.Order).ToList();
+				foreach (var bootstrapTask in startupTasks) {
 					var type = bootstrapTask.GetType();
 
 					if (type.IsDefined(typeof(SkipTaskAttribute), false)) {

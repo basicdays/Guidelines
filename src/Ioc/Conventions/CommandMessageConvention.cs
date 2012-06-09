@@ -5,7 +5,6 @@ using Guidelines.WebUI.ActionResults;
 using StructureMap.Configuration.DSL;
 using StructureMap.Graph;
 using StructureMap.TypeRules;
-using CommandResult = Guidelines.Domain.Commands.CommandResult;
 
 namespace Guidelines.Ioc.Conventions
 {
