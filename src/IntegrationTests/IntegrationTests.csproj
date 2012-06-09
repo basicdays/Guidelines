@@ -67,9 +67,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AutoMapperRegistry.cs" />
+    <Compile Include="Commands\Fixtures\BasicCreateCommandTests.cs" />
+    <Compile Include="Commands\Fixtures\BasicDeleteCommandTests.cs" />
+    <Compile Include="Commands\Fixtures\BasicGetCommandTests.cs" />
     <Compile Include="Commands\Fixtures\BootStrappingTest.cs" />
+    <Compile Include="Commands\Fixtures\CrudCommandTest.cs" />
     <Compile Include="Commands\StructuremapRegistrar.cs" />
-    <Compile Include="Commands\Fixtures\DefaultCrudCommandTests.cs" />
+    <Compile Include="Commands\Fixtures\BasicUpdateCommandTests.cs" />
     <Compile Include="Commands\MemoryRepository.cs" />
     <Compile Include="Commands\TestUnitOfWork.cs" />
     <Compile Include="Commands\TestRegistry.cs" />
