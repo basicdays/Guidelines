@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
 using AutoMapper.Mappers;
-using Guidelines.AutoMapper;
-using Guidelines.Domain;
+using Guidelines.Core;
+using Guidelines.Core.Bootstrap;
+using Guidelines.Mapping.AutoMapper;
 using StructureMap.Configuration.DSL;
 
-namespace Guidelines.IntegrationTests.IoC
+namespace Guidelines.IntegrationTests.Commands
 {
 	public class AutoMapperRegistry : Registry
 	{
@@ -28,8 +29,10 @@ namespace Guidelines.IntegrationTests.IoC
 			For(typeof(IMapper<,>)).Use(typeof(Mapper<,>));
 
 			Scan(scanner => {
+				scanner.AssemblyContainingType<AutoMapperInfrastructureMarker>();
 				scanner.WithDefaultConventions();
 				scanner.AddAllTypesOf<Profile>();
+				scanner.AddAllTypesOf<IBootstrapTask>();
 			});
 		}
 	}

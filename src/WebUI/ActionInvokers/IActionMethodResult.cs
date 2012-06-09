@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using Guidelines.Domain;
+using Guidelines.Core;
 using Guidelines.WebUI.Errors;
 
 namespace Guidelines.WebUI.ActionInvokers

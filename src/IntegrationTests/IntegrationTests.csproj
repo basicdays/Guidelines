@@ -66,38 +66,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IoC\AutoMapperRegistry.cs" />
-    <Compile Include="IoC\Fixtures\BootStrappingTest.cs" />
-    <Compile Include="IoC\DefaultMapperConvention.cs" />
-    <Compile Include="IoC\DependencyRegistrar.cs" />
-    <Compile Include="IoC\Fixtures\DefaultCrudCommandTests.cs" />
-    <Compile Include="IoC\MongoConfigProvider.cs" />
-    <Compile Include="IoC\MongoCredentialProvider.cs" />
-    <Compile Include="IoC\TestRegistry.cs" />
-    <Compile Include="IoC\IocRegistry.cs" />
+    <Compile Include="Commands\AutoMapperRegistry.cs" />
+    <Compile Include="Commands\Fixtures\BootStrappingTest.cs" />
+    <Compile Include="Commands\StructuremapRegistrar.cs" />
+    <Compile Include="Commands\Fixtures\DefaultCrudCommandTests.cs" />
+    <Compile Include="Commands\MemoryRepository.cs" />
+    <Compile Include="Commands\TestUnitOfWork.cs" />
+    <Compile Include="Commands\TestRegistry.cs" />
+    <Compile Include="Commands\IocRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\DataAccess.Mongo\DataAccess.Mongo.csproj">
+    <ProjectReference Include="..\DataAccess.Mongo\DataAccess.Mongo.csproj">
       <Project>{73277BCB-AF14-41DB-BAF6-4B95B84874A7}</Project>
       <Name>DataAccess.Mongo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\src\Domain\Domain.csproj">
+    <ProjectReference Include="..\Domain\Core.csproj">
       <Project>{9BC41FF7-EDBC-4367-B740-0302840DABAE}</Project>
-      <Name>Domain</Name>
+      <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\src\Ioc\Ioc.csproj">
+    <ProjectReference Include="..\Ioc\Ioc.StructureMap.csproj">
       <Project>{94581DDA-9B41-481A-8BF5-049B50C11A5D}</Project>
-      <Name>Ioc</Name>
+      <Name>Ioc.StructureMap</Name>
     </ProjectReference>
-    <ProjectReference Include="..\src\Mapping\AutoMapperTools.csproj">
+    <ProjectReference Include="..\Mapping\Mapping.AutoMapper.csproj">
       <Project>{334D4A72-D3A8-441D-BE43-6F144C02EC78}</Project>
-      <Name>AutoMapperTools</Name>
+      <Name>Mapping.AutoMapper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\src\WebUI\WebUI.csproj">
+    <ProjectReference Include="..\WebUI\WebUI.csproj">
       <Project>{483AC3D4-CCF6-4B84-B954-6492EC545C11}</Project>
       <Name>WebUI</Name>
     </ProjectReference>

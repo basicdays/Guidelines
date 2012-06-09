@@ -2,7 +2,7 @@
 using System.Threading;
 using AutoMapper;
 
-namespace Guidelines.AutoMapper.Formatters
+namespace Guidelines.Mapping.AutoMapper.Formatters
 {
     public class TitleCaseFormater : ValueFormatter<string>
     {

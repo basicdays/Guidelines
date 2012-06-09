@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Guidelines.Domain
+namespace Guidelines.Core
 {
 	public interface IRepository<TDomain>
 	{

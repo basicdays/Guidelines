@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Security;
-using Guidelines.Domain.Properties;
-using Guidelines.Domain.Specifications;
+using Guidelines.Core.Properties;
+using Guidelines.Core.Specifications;
 
-namespace Guidelines.Domain.Commands
+namespace Guidelines.Core.Commands
 {
 	public interface IDeleteCommand<TDomain>
 	{

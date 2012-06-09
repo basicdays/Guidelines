@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
-using Guidelines.Domain;
-using Guidelines.Domain.Commands;
+using Guidelines.Core;
+using Guidelines.Core.Commands;
 using Guidelines.WebUI.ActionResults;
 using Guidelines.WebUI.Errors;
 

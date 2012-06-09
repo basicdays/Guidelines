@@ -150,9 +150,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj">
+    <ProjectReference Include="..\Domain\Core.csproj">
       <Project>{9BC41FF7-EDBC-4367-B740-0302840DABAE}</Project>
-      <Name>Domain</Name>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

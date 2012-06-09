@@ -1,12 +1,13 @@
 ﻿using System;
-using Guidelines.Domain.Commands;
+using Guidelines.Core.Commands;
 using Guidelines.WebUI.ActionInvokers;
 using Guidelines.WebUI.ActionResults;
 using StructureMap.Configuration.DSL;
 using StructureMap.Graph;
 using StructureMap.TypeRules;
+using CommandResult = Guidelines.Core.Commands.CommandResult;
 
-namespace Guidelines.Ioc.Conventions
+namespace Guidelines.Ioc.StructureMap.Conventions
 {
 	public class CommandMessageConvention : IRegistrationConvention
 	{
@@ -57,7 +58,7 @@ namespace Guidelines.Ioc.Conventions
 				var closedActionMethodInvokerType =
 					openActionMethodInvokerType.MakeGenericType(closedCommandMethodResultType);
 
-				var closedDomainResultType = typeof(Domain.Commands.CommandResult);
+				var closedDomainResultType = typeof(CommandResult);
 
 				var openCommandMethodResultInvokerType = typeof(ResultInvoker<,>);
 				var closedCommandMethodResultInvokerType =

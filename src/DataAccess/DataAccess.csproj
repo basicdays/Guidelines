@@ -51,9 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAccessInfrastructureMarker.cs" />
     <Compile Include="Mongo\BaseCollectionProvider.cs" />
-    <Compile Include="DataAccessException.cs" />
     <Compile Include="Mongo\IMongoClassMap.cs" />
     <Compile Include="Mongo\IMongoCollectionProvider.cs" />
     <Compile Include="Mongo\IMongoConfigProvider.cs" />

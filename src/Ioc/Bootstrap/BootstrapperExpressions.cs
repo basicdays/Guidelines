@@ -2,27 +2,27 @@
 using StructureMap;
 using StructureMap.Configuration.DSL;
 
-namespace Guidelines.Ioc.Bootstrap
+namespace Guidelines.Ioc.StructureMap.Bootstrap
 {
 	public static class BootstrapperExpressions
 	{
 		//Review: See bootstrapper constructor review comment
 		//Bad - non-guarantied required dependency
-		public static IBootstrapper ContainerIs(this IBootstrapper bootstrapper, IContainer container)
+		public static Bootstrap WithContainer(this Bootstrap bootstrapper, IContainer container)
 		{
 			bootstrapper.Container = container;
 			return bootstrapper;
 		}
 
 		//Bad - non-guarantied required dependency
-		public static IBootstrapper RegistrarIs(this IBootstrapper bootstrapper, IDependencyRegistrar registrar)
+		public static Bootstrap WithRegistrar(this Bootstrap bootstrapper, IStructuremapRegistrar registrar)
 		{
-			bootstrapper.DependencyRegistrar = registrar;
+			bootstrapper.StructuremapRegistrar = registrar;
 			return bootstrapper;
 		}
 
 		//Good - allowing addition of features
-		public static IBootstrapper AdditionalRegristriesAre(this IBootstrapper bootstrapper, IEnumerable<Registry> additionalRegistries)
+		public static Bootstrap AdditionalRegristriesAre(this Bootstrap bootstrapper, IEnumerable<Registry> additionalRegistries)
 		{
 			bootstrapper.AdditionalRegistries = additionalRegistries;
 			return bootstrapper;

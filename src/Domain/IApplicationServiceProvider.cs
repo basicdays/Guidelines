@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Guidelines.Domain
+namespace Guidelines.Core
 {
     public interface IApplicationServiceProvider
     {

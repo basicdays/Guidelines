@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using Guidelines.AutoMapper.Resolvers;
-using Guidelines.Domain;
-using Guidelines.Domain.Commands;
+using Guidelines.Core;
+using Guidelines.Core.Commands;
+using Guidelines.Mapping.AutoMapper.Resolvers;
 
-namespace Guidelines.AutoMapper
+namespace Guidelines.Mapping.AutoMapper
 {
 	public interface IDefaultMappingsLoader 
 	{

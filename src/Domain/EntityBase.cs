@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
-using Guidelines.Domain.Validation;
+using Guidelines.Core.Validation;
 
-namespace Guidelines.Domain
+namespace Guidelines.Core
 {
 	/// <summary>
 	/// Implements generic and non-generic Equals by comparing the GetHashCode result. Readable properties without the

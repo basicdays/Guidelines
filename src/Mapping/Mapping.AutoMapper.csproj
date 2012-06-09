@@ -8,8 +8,8 @@
     <ProjectGuid>{334D4A72-D3A8-441D-BE43-6F144C02EC78}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Guidelines.AutoMapper</RootNamespace>
-    <AssemblyName>Guidelines.AutoMapper</AssemblyName>
+    <RootNamespace>Guidelines.Mapping.AutoMapper</RootNamespace>
+    <AssemblyName>Guidelines.Mapping.AutoMapper</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -71,13 +71,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj">
+    <ProjectReference Include="..\Domain\Core.csproj">
       <Project>{9BC41FF7-EDBC-4367-B740-0302840DABAE}</Project>
-      <Name>Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Ioc\Ioc.csproj">
-      <Project>{94581DDA-9B41-481A-8BF5-049B50C11A5D}</Project>
-      <Name>Ioc</Name>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

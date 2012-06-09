@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Guidelines.Domain.Commands
+namespace Guidelines.Core.Commands
 {
 	public class QueryResult<TResult> : CommandResult
 	{

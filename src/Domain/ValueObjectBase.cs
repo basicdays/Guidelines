@@ -1,7 +1,7 @@
 ﻿using System;
-using Guidelines.Domain.Properties;
+using Guidelines.Core.Properties;
 
-namespace Guidelines.Domain
+namespace Guidelines.Core
 {
 	public abstract class ValueObjectBase<TValue> : IEquatable<TValue>, IComparable<TValue>
 		where TValue : IEquatable<TValue>, IComparable<TValue>

@@ -1,7 +1,7 @@
 ﻿using System;
 using AutoMapper;
 
-namespace Guidelines.AutoMapper.Resolvers
+namespace Guidelines.Mapping.AutoMapper.Resolvers
 {
     public class CurrentUtcDateTimeResolver : ValueResolver<object, DateTime>
     {

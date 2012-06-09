@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Guidelines.AutoMapper.Formatters
+namespace Guidelines.Mapping.AutoMapper.Formatters
 {
     public class ZeroToNullFormatter : ValueFormatter<int?>
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading;
-using Guidelines.Domain;
+using Guidelines.Core;
 using Guidelines.WebUI.Session;
 
 namespace Guidelines.WebUI

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Guidelines.Domain
+namespace Guidelines.Core
 {
 	/// <summary>
 	/// Represents an Id generator for Guids using the COMB algorithm.

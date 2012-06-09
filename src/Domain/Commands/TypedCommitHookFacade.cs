@@ -1,4 +1,4 @@
-namespace Guidelines.Domain.Commands
+namespace Guidelines.Core.Commands
 {
     public class TypedCommitHookFacade<TCommand> : ICommitHook
     {

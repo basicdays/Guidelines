@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using StructureMap;
 
-namespace Guidelines.Ioc.Adaptors
+namespace Guidelines.Ioc.StructureMap.Adaptors
 {
     public class StructureMapFilterProvider : FilterAttributeFilterProvider
     {

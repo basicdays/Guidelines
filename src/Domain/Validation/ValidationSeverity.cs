@@ -1,4 +1,4 @@
-﻿namespace Guidelines.Domain.Validation
+﻿namespace Guidelines.Core.Validation
 {
     public enum ValidationSeverity
     {

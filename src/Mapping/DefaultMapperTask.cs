@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Guidelines.Ioc.Bootstrap;
+using Guidelines.Core.Bootstrap;
 
-namespace Guidelines.AutoMapper
+namespace Guidelines.Mapping.AutoMapper
 {
 	public class DefaultMapperTask : IBootstrapTask
 	{

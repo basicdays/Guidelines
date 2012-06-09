@@ -1,8 +1,8 @@
 ﻿using System;
 using AutoMapper;
-using Guidelines.Domain;
+using Guidelines.Core;
 
-namespace Guidelines.AutoMapper.Formatters
+namespace Guidelines.Mapping.AutoMapper.Formatters
 {
 	public class ToLocalDateFormatter : ValueFormatter<DateTime?>
     {

@@ -1,8 +1,8 @@
-﻿using Guidelines.Ioc.Bootstrap;
+﻿using Guidelines.Ioc.StructureMap.Bootstrap;
 using NUnit.Framework;
 using StructureMap;
 
-namespace Guidelines.IntegrationTests.IoC.Fixtures
+namespace Guidelines.IntegrationTests.Commands.Fixtures
 {
 	[TestFixture]
 	public class BootStrappingTest
@@ -12,7 +12,7 @@ namespace Guidelines.IntegrationTests.IoC.Fixtures
 		{
 			//arrange
 			var container = new Container();
-			var registrar = new DependencyRegistrar();
+			var registrar = new StructuremapRegistrar();
 
 			//act
 			registrar.ConfigureDependencies(container, false);
@@ -26,13 +26,13 @@ namespace Guidelines.IntegrationTests.IoC.Fixtures
 		{
 			//arrange
 			var container = new Container();
-			var registrar = new DependencyRegistrar();
+			var registrar = new StructuremapRegistrar();
 
 			//act
-			var bootstrapper = new Bootstrapper()
-				.ContainerIs(container)
-				.RegistrarIs(registrar)
-				.Bootstrap();
+			var bootstrapper = new Bootstrap()
+				.WithContainer(container)
+				.WithRegistrar(registrar)
+				.Start();
 
 			bootstrapper.Dispose();
 

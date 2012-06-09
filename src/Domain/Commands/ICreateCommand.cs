@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Security;
-using Guidelines.Domain.Properties;
-using Guidelines.Domain.Specifications;
-using Guidelines.Domain.Validation;
+using Guidelines.Core.Properties;
+using Guidelines.Core.Specifications;
+using Guidelines.Core.Validation;
 
-namespace Guidelines.Domain.Commands
+namespace Guidelines.Core.Commands
 {
 	public interface ICreateCommand<TDomain>
 	{ }

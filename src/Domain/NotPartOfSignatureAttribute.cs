@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Guidelines.Domain
+namespace Guidelines.Core
 {
 	[AttributeUsage(AttributeTargets.Property)]
 	public class NotPartOfSignatureAttribute : Attribute { }

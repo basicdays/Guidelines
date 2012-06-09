@@ -1,12 +1,11 @@
 ﻿using System;
-using Guidelines.AutoMapper;
-using Guidelines.Domain;
-using Guidelines.Domain.Commands;
+using Guidelines.Core.Commands;
+using Guidelines.Mapping.AutoMapper;
 using StructureMap.Configuration.DSL;
 using StructureMap.Graph;
 using StructureMap.TypeRules;
 
-namespace Guidelines.IntegrationTests.IoC
+namespace Guidelines.Ioc.StructureMap.Conventions
 {
 	public class DefaultMapperConvention : IRegistrationConvention
 	{
@@ -21,20 +20,20 @@ namespace Guidelines.IntegrationTests.IoC
 				Type closesCommandHandler = handler.MakeGenericType(type, domainEntityType);
 
 				registry.For(closesCommandHandlerInterface).Use(closesCommandHandler);
+
+				MakeMapplingLoader(domainEntityType, registry);
 			}
+		}
+
+		private static void MakeMapplingLoader(Type type, Registry registry) {
+			Type openMappingLoader = typeof(DefaultMappingsLoader<>);
+			Type mappingLoader = openMappingLoader.MakeGenericType(type);
+
+			registry.AddType(typeof(IDefaultMappingsLoader), mappingLoader);
 		}
 
 		public void Process(Type type, Registry registry)
 		{
-			if (type.ImplementsInterfaceTemplate(typeof(EntityBase<>)))
-			{
-				var openMappingLoader = typeof(DefaultMappingsLoader<>);
-				var mappingLoader =
-					openMappingLoader.MakeGenericType(type);
-
-				registry.AddType(typeof(IDefaultMappingsLoader), mappingLoader);
-			}
-
 			RegisterTypes(type, registry, typeof(IUpdateCommand<>), typeof(DefaultMappingUpdater<,>), typeof(IUpdateCommandHandler<,>));
 			RegisterTypes(type, registry, typeof(ICreateCommand<>), typeof(DefaultMappingCreator<,>), typeof(ICreateCommandHandler<,>));
 		}

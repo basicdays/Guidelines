@@ -1,13 +1,12 @@
-﻿using Guidelines.DataAccess.Mongo;
-using Guidelines.Domain;
-using Guidelines.Domain.Commands;
-using Guidelines.Domain.Validation;
-using Guidelines.Ioc.Conventions;
+﻿using Guidelines.Core;
+using Guidelines.Core.Commands;
+using Guidelines.Core.Validation;
+using Guidelines.Ioc.StructureMap.Conventions;
 using Guidelines.WebUI;
 using log4net;
 using StructureMap.Configuration.DSL;
 
-namespace Guidelines.IntegrationTests.IoC
+namespace Guidelines.IntegrationTests.Commands
 {
 	public class TestRegistry : Registry
 	{
@@ -17,19 +16,11 @@ namespace Guidelines.IntegrationTests.IoC
 			For<IValidationEngine>().Use<DataAnnotationsEngine>();
 			For<IIdPolicy>().Use<CombGuidIdPolicy>();
 
-			For<IMongoCredentialProvider>().Singleton().Use<MongoCredentialProvider>();
-			For<IMongoConfigProvider>().Singleton().Use<MongoConfigProvider>();
-			For(typeof(IMongoCollectionProvider<>)).Use(typeof(ObjectNameCollectionProvider<>));
-			For(typeof (IRepository<>)).Use(typeof (MongoRepository<>));
+			For(typeof (IRepository<>)).Use(typeof (MemoryRepository<>));
+			For<IUnitOfWork>().Use<TestUnitOfWork>();
 
 			For<ILocalizationProvider>().Use<LocalizationProvider>();
-
-			Scan(scanner =>
-			{
-				scanner.AssemblyContainingType<IMongoConfigProvider>();
-				scanner.AssemblyContainingType<ILocalizedDateConverter>();
-				scanner.WithDefaultConventions();
-			});
+			For<ICommandMessageProcessor>().Use<CommandMessageProcessor>();
 
 			Scan(scanner =>
 			{

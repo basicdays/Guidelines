@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Guidelines.Domain;
+using Guidelines.Core;
 using StructureMap;
 
-namespace Guidelines.Ioc
+namespace Guidelines.Ioc.StructureMap
 {
     public class ApplicationServiceProvider : IApplicationServiceProvider
     {

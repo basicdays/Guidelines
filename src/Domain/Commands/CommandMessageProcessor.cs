@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Security;
-using Guidelines.Domain.Validation;
+using Guidelines.Core.Validation;
 using log4net;
 
-namespace Guidelines.Domain.Commands
+namespace Guidelines.Core.Commands
 {
 	public class CommandMessageProcessor : ICommandMessageProcessor
 	{

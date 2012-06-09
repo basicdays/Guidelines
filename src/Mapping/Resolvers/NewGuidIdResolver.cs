@@ -1,8 +1,8 @@
 ﻿using System;
 using AutoMapper;
-using Guidelines.Domain;
+using Guidelines.Core;
 
-namespace Guidelines.AutoMapper.Resolvers
+namespace Guidelines.Mapping.AutoMapper.Resolvers
 {
     public class NewGuidIdResolver : ValueResolver<object, Guid>
     {

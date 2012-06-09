@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
-using Guidelines.Domain;
-using Guidelines.Domain.Commands;
+using Guidelines.Core;
+using Guidelines.Core.Commands;
 using Guidelines.WebUI.Errors;
 
 namespace Guidelines.WebUI.ActionInvokers

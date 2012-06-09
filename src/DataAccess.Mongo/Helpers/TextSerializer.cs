@@ -1,4 +1,4 @@
-﻿using Guidelines.Domain;
+﻿using Guidelines.Core;
 using MongoDB.Bson;
 
 namespace Guidelines.DataAccess.Mongo.Helpers

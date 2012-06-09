@@ -1,8 +1,4 @@
-﻿using System.Security;
-using Guidelines.Domain.Properties;
-using Guidelines.Domain.Validation;
-
-namespace Guidelines.Domain.Commands
+﻿namespace Guidelines.Core.Commands
 {
 	public interface IQueryHandler<in TCommand, out TResponse>
 	{

@@ -1,6 +1,6 @@
 ﻿using log4net;
 
-namespace Guidelines.Domain.Commands
+namespace Guidelines.Core.Commands
 {
     public class CommandLogger : ICommandPreprocessor
     {

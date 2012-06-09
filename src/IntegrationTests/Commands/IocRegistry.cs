@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel.Design;
-using Guidelines.AutoMapper;
-using Guidelines.Domain;
-using Guidelines.Ioc;
-using Guidelines.Ioc.Adaptors;
-using Guidelines.Ioc.Bootstrap;
+using Guidelines.Core;
+using Guidelines.Core.Bootstrap;
+using Guidelines.Ioc.StructureMap;
+using Guidelines.Ioc.StructureMap.Adaptors;
+using Guidelines.Mapping.AutoMapper;
 using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 using StructureMap.Configuration.DSL;
 
-namespace Guidelines.IntegrationTests.IoC
+namespace Guidelines.IntegrationTests.Commands
 {
 	public class IocRegistry : Registry
 	{

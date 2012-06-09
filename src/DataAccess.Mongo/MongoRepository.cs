@@ -1,5 +1,5 @@
 ﻿using System;
-using Guidelines.Domain;
+using Guidelines.Core;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 

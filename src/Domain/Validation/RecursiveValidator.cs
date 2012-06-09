@@ -5,7 +5,7 @@ using System.ComponentModel.Design;
 using System.Linq;
 using System.Reflection;
 
-namespace Guidelines.Domain.Validation
+namespace Guidelines.Core.Validation
 {
     public class RecursiveValidator
     {

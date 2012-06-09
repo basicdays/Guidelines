@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using AutoMapper;
-using Guidelines.Domain;
-using Guidelines.Ioc.Bootstrap;
+using Guidelines.Core;
+using Guidelines.Core.Bootstrap;
 
-namespace Guidelines.AutoMapper
+namespace Guidelines.Mapping.AutoMapper
 {
 	public class AutoMapperTask : IBootstrapTask
 	{

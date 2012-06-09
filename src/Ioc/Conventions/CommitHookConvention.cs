@@ -1,10 +1,10 @@
 using System;
-using Guidelines.Domain.Commands;
+using Guidelines.Core.Commands;
 using StructureMap.Configuration.DSL;
 using StructureMap.Graph;
 using StructureMap.TypeRules;
 
-namespace Guidelines.Ioc.Conventions
+namespace Guidelines.Ioc.StructureMap.Conventions
 {
     public class CommitHookConvention : IRegistrationConvention
     {

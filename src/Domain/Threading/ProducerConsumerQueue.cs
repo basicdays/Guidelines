@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Threading;
 using log4net;
 
-namespace Guidelines.Domain.Threading
+namespace Guidelines.Core.Threading
 {
     public class ProducerConsumerQueue
     {

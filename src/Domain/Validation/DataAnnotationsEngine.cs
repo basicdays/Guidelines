@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design;
 using System.Linq;
-using Guidelines.Domain.Properties;
+using Guidelines.Core.Properties;
 
-namespace Guidelines.Domain.Validation
+namespace Guidelines.Core.Validation
 {
 	public class DataAnnotationsEngine : IValidationEngine
 	{

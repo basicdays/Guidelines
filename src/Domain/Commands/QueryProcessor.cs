@@ -1,4 +1,4 @@
-﻿namespace Guidelines.Domain.Commands
+﻿namespace Guidelines.Core.Commands
 {
 	public class QueryProcessor<TQuerryMessage, TResult> : IQueryProcessor<TQuerryMessage, TResult>
 	{

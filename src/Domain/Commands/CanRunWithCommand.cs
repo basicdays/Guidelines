@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Guidelines.Domain.Specifications;
+using Guidelines.Core.Specifications;
 
-namespace Guidelines.Domain.Commands
+namespace Guidelines.Core.Commands
 {
 	public class CanRunWithCommand<TCommand, TDomain> : ISpecification<TDomain>
 	{

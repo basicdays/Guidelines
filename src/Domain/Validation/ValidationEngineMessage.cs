@@ -1,4 +1,4 @@
-﻿namespace Guidelines.Domain.Validation
+﻿namespace Guidelines.Core.Validation
 {
     /// <summary>
     /// Contains the data on the part that failed validation, a message describing the reason, and severity of the error.

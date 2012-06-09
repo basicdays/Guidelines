@@ -1,4 +1,4 @@
-namespace Guidelines.Domain.Specifications
+namespace Guidelines.Core.Specifications
 {
     public static class SpecificationExtensions
     {

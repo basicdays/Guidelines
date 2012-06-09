@@ -1,4 +1,4 @@
-﻿namespace Guidelines.Domain.Specifications
+﻿namespace Guidelines.Core.Specifications
 {
 	public interface ISpecification<TEntity>
 	{

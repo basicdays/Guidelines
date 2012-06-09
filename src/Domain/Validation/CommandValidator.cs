@@ -1,6 +1,6 @@
-﻿using Guidelines.Domain.Commands;
+﻿using Guidelines.Core.Commands;
 
-namespace Guidelines.Domain.Validation
+namespace Guidelines.Core.Validation
 {
 	public class CommandValidator : ICommandPreprocessor
 	{

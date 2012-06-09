@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Guidelines.Domain
+namespace Guidelines.Core
 {
 	/// <summary>
 	/// Accepts a UTC date and converts it to the timezone provided by the localization provider.

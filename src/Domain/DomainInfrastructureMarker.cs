@@ -1,4 +1,4 @@
-﻿namespace Guidelines.Domain
+﻿namespace Guidelines.Core
 {
 	public class DomainInfrastructureMarker
 	{

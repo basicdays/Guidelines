@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 
-namespace Guidelines.Ioc.Adaptors
+namespace Guidelines.Ioc.StructureMap.Adaptors
 {
 	/// <summary>
 	/// Adapter used for <see cref="ServiceLocator"/> for StructureMap. Set by using <see cref="ServiceLocator.SetLocatorProvider"/>.

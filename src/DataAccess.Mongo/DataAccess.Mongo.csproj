@@ -67,9 +67,9 @@
     <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj">
+    <ProjectReference Include="..\Domain\Core.csproj">
       <Project>{9BC41FF7-EDBC-4367-B740-0302840DABAE}</Project>
-      <Name>Domain</Name>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Reflection;
 using AutoMapper;
-using Guidelines.Domain.Validation;
+using Guidelines.Core.Validation;
 
-namespace Guidelines.AutoMapper.Profiles
+namespace Guidelines.Mapping.AutoMapper.Profiles
 {
     public class ValidationEngineMappings : Profile
     {

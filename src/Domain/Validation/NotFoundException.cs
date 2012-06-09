@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Guidelines.Domain.Validation
+namespace Guidelines.Core.Validation
 {
     public class NotFoundException : Exception
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
-using Guidelines.Domain;
+using Guidelines.Core;
 using Guidelines.WebUI.ActionInvokers;
 using Guidelines.WebUI.Errors;
 

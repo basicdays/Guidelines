@@ -1,4 +1,4 @@
-﻿namespace Guidelines.Domain.Specifications
+﻿namespace Guidelines.Core.Specifications
 {
     public class Exists<TEntity> : ISpecification<TEntity> 
         where TEntity : class

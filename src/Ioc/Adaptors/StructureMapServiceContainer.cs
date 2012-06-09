@@ -2,7 +2,7 @@
 using System.ComponentModel.Design;
 using StructureMap;
 
-namespace Guidelines.Ioc.Adaptors
+namespace Guidelines.Ioc.StructureMap.Adaptors
 {
     /// <summary>
     /// Container that will use <see cref="MSServiceLocator"/> to get types. Does not implement changing the registry.

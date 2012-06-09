@@ -1,4 +1,4 @@
-namespace Guidelines.Domain.Specifications
+namespace Guidelines.Core.Specifications
 {
     internal class OrSpecification<TEntity> : ISpecification<TEntity>
     {

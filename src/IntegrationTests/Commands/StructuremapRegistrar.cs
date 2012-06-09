@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Guidelines.Domain.Commands;
-using Guidelines.Ioc;
-using Guidelines.Ioc.Adaptors;
+﻿using System.Collections.Generic;
+using Guidelines.Core.Commands;
+using Guidelines.Ioc.StructureMap;
+using Guidelines.Ioc.StructureMap.Adaptors;
 using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 using StructureMap.Configuration.DSL;
 
-namespace Guidelines.IntegrationTests.IoC
+namespace Guidelines.IntegrationTests.Commands
 {
-	public class DependencyRegistrar : IDependencyRegistrar
+	public class StructuremapRegistrar : IStructuremapRegistrar
 	{
 		public void ConfigureDependencies(IContainer container, bool setServiceLocator = true)
 		{

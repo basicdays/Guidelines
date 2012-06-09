@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Guidelines.Core.Validation;
 using Guidelines.WebUI.Properties;
-using Guidelines.Domain.Validation;
 using Guidelines.WebUI.Session;
 
 namespace Guidelines.WebUI.Errors

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Guidelines.Domain.Validation
+namespace Guidelines.Core.Validation
 {
     public class ValidationEngineException : Exception
     {

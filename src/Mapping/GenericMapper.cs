@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Guidelines.Domain;
+using Guidelines.Core;
 
-namespace Guidelines.AutoMapper
+namespace Guidelines.Mapping.AutoMapper
 {
     public class GenericMapper : IGenericMapper
     {
