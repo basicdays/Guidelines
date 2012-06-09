@@ -150,7 +150,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Core.csproj">
+    <ProjectReference Include="..\Core\Core.csproj">
       <Project>{9BC41FF7-EDBC-4367-B740-0302840DABAE}</Project>
       <Name>Core</Name>
     </ProjectReference>
