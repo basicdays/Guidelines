@@ -70,8 +70,11 @@
     <Compile Include="Commands\Fixtures\BasicCreateCommandTests.cs" />
     <Compile Include="Commands\Fixtures\BasicDeleteCommandTests.cs" />
     <Compile Include="Commands\Fixtures\BasicGetCommandTests.cs" />
+    <Compile Include="Commands\Fixtures\BlockedCommandTests.cs" />
+    <Compile Include="Commands\Fixtures\BlockedEntityTests.cs" />
     <Compile Include="Commands\Fixtures\BootStrappingTest.cs" />
     <Compile Include="Commands\Fixtures\CrudCommandTest.cs" />
+    <Compile Include="Commands\Fixtures\ProtoectedCommandTests.cs" />
     <Compile Include="Commands\StructuremapRegistrar.cs" />
     <Compile Include="Commands\Fixtures\BasicUpdateCommandTests.cs" />
     <Compile Include="Commands\MemoryRepository.cs" />

@@ -11,16 +11,16 @@ namespace Guidelines.IntegrationTests.Commands.Fixtures
 
 		private const string TestName = "Ted";
 
-		public class CreateTestObject : ICreateCommand<TestEntity>
+		public class Create : ICreateCommand<TestEntity>
 		{
 			public string Name { get; set; }
 		}
 
 		public override void SetupTestContext()
 		{
-			var createCommandProcessor = Container.GetInstance<IQueryProcessor<CreateTestObject, TestEntity>>();
+			var createCommandProcessor = Container.GetInstance<IQueryProcessor<Create, TestEntity>>();
 
-			var createCommand = new CreateTestObject { Name = TestName };
+			var createCommand = new Create { Name = TestName };
 
 			Result = createCommandProcessor.Process(createCommand);
 			RepositoryEntity = Repository.GetAll().FirstOrDefault();

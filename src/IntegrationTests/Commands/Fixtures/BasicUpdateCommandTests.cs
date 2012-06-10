@@ -10,10 +10,10 @@ namespace Guidelines.IntegrationTests.Commands.Fixtures
 		protected TestEntity RepositoryEntity { get; set; }
 		protected CommandResult Result { get; set; }
 
-		private const string InitialTestName = "Mark";
-		private const string UpdatedTestName = "Ted";
+		protected const string InitialTestName = "Mark";
+		protected const string UpdatedTestName = "Ted";
 
-		public class UpdateTestObject : IUpdateCommand<TestEntity>
+		public class Update : IUpdateCommand<TestEntity>
 		{
 			public Guid Id { get; set; }
 			public string Name { get; set; }
@@ -24,9 +24,9 @@ namespace Guidelines.IntegrationTests.Commands.Fixtures
 			var id = Guid.NewGuid();
 			Repository.Insert(new TestEntity { Id = id, Name = InitialTestName });
 
-			var createCommandProcessor = Container.GetInstance<ICommandProcessor<UpdateTestObject>>();
+			var createCommandProcessor = Container.GetInstance<ICommandProcessor<Update>>();
 
-			var createCommand = new UpdateTestObject { Id = id, Name = UpdatedTestName };
+			var createCommand = new Update { Id = id, Name = UpdatedTestName };
 
 			Result = createCommandProcessor.Process(createCommand);
 			RepositoryEntity = Repository.GetAll().FirstOrDefault();

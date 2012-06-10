@@ -12,7 +12,7 @@ namespace Guidelines.IntegrationTests.Commands.Fixtures
 
 		private const string TestName = "Mark";
 
-		public class GetTestObject : IGetCommand<TestEntity>
+		public class Get : IGetCommand<TestEntity>
 		{
 			public Guid Id { get; set; }
 		}
@@ -22,9 +22,9 @@ namespace Guidelines.IntegrationTests.Commands.Fixtures
 			var id = Guid.NewGuid();
 			Repository.Insert(new TestEntity { Id = id, Name = TestName });
 
-			var createCommandProcessor = Container.GetInstance<IQueryProcessor<GetTestObject, TestEntity>>();
+			var createCommandProcessor = Container.GetInstance<IQueryProcessor<Get, TestEntity>>();
 
-			var createCommand = new GetTestObject { Id = id };
+			var createCommand = new Get { Id = id };
 
 			Result = createCommandProcessor.Process(createCommand);
 			RepositoryEntity = Repository.GetAll().FirstOrDefault();

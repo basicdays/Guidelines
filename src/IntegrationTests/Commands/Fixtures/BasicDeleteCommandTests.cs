@@ -10,7 +10,7 @@ namespace Guidelines.IntegrationTests.Commands.Fixtures
 		protected TestEntity RepositoryEntity { get; set; }
 		protected CommandResult Result { get; set; }
 
-		public class DeleteTestObject : IDeleteCommand<TestEntity>
+		public class Delete : IDeleteCommand<TestEntity>
 		{
 			public Guid Id { get; set; }
 		}
@@ -20,9 +20,9 @@ namespace Guidelines.IntegrationTests.Commands.Fixtures
 			var id = Guid.NewGuid();
 			Repository.Insert(new TestEntity { Id = id });
 
-			var createCommandProcessor = Container.GetInstance<ICommandProcessor<DeleteTestObject>>();
+			var createCommandProcessor = Container.GetInstance<ICommandProcessor<Delete>>();
 
-			var createCommand = new DeleteTestObject { Id = id };
+			var createCommand = new Delete { Id = id };
 
 			Result = createCommandProcessor.Process(createCommand);
 			RepositoryEntity = Repository.GetAll().FirstOrDefault();

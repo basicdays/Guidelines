@@ -30,6 +30,8 @@ namespace Guidelines.IntegrationTests.Commands
 				scanner.Convention<DefaultMapperConvention>();
 				scanner.Convention<QuerryProcessorConvention>();
 				scanner.Convention<ActionProcessorConvention>();
+				scanner.AddAllTypesOf(typeof(ICommandPermision<,>));
+				scanner.AddAllTypesOf(typeof(IPermision<>));
 				scanner.WithDefaultConventions();
 			});
 		}

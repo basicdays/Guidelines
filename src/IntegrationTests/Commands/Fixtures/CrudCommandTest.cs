@@ -1,4 +1,5 @@
-﻿using Guidelines.Core;
+﻿using System.Linq;
+using Guidelines.Core;
 using Guidelines.Core.Commands;
 using Guidelines.Ioc.StructureMap.Bootstrap;
 using NUnit.Framework;
