@@ -1,4 +1,5 @@
-﻿using Guidelines.Core;
+﻿using AutoMapper;
+using Guidelines.Core;
 using Guidelines.Core.Commands;
 using Guidelines.Core.Validation;
 using Guidelines.Ioc.StructureMap.Conventions;
@@ -25,13 +26,16 @@ namespace Guidelines.IntegrationTests.Commands
 			Scan(scanner =>
 			{
 				scanner.AssemblyContainingType<TestRegistry>();
+				scanner.Convention<DefaultMapperConvention>();
 				scanner.Convention<CommandPreprocessorConvention>();
 				scanner.Convention<DefaultCrudConvention>();
-				scanner.Convention<DefaultMapperConvention>();
 				scanner.Convention<QuerryProcessorConvention>();
 				scanner.Convention<ActionProcessorConvention>();
 				scanner.AddAllTypesOf(typeof(ICommandPermision<,>));
 				scanner.AddAllTypesOf(typeof(IPermision<>));
+				scanner.AddAllTypesOf(typeof(Profile));
+				scanner.AddAllTypesOf(typeof (IUpdateCommandHandler<,>));
+				scanner.AddAllTypesOf(typeof (ICreateCommandHandler<,>));
 				scanner.WithDefaultConventions();
 			});
 		}

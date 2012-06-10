@@ -9,7 +9,7 @@ namespace Guidelines.IntegrationTests.Commands.Fixtures
 		protected TestEntity RepositoryEntity { get; set; }
 		protected QueryResult<TestEntity> Result { get; set; }
 
-		private const string TestName = "Ted";
+		protected const string TestName = "Ted";
 
 		public class Create : ICreateCommand<TestEntity>
 		{

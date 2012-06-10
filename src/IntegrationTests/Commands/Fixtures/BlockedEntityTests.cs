@@ -43,5 +43,11 @@ namespace Guidelines.IntegrationTests.Commands.Fixtures
 		{
 			Assert.That(Result.Error, Is.TypeOf<SecurityException>());
 		}
+
+		[Test]
+		public void TheUnitOfWorkWasRolledBack()
+		{
+			Assert.That(TestUnitOfWork.RolledBack, Is.True);
+		}
 	}
 }
