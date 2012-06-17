@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Security;
 using Guidelines.Core.Properties;
 using Guidelines.Core.Specifications;
@@ -9,9 +10,31 @@ namespace Guidelines.Core.Commands
 	public interface ICreateCommand<TDomain>
 	{ }
 
-	public interface ICreateCommandHandler<TCommand, TDomain>
+	public interface ICreateCommandHandler<in TCommand, out TDomain>
 	{
 		TDomain Create(TCommand command);
+	}
+
+	public interface ICreateHandlerFactory<in TCommand, out TDomain>
+	{
+		ICreateCommandHandler<TCommand, TDomain> BuildCreator();
+	}
+
+	public class CreateHandlerFactory<TCommand, TDomain> : ICreateHandlerFactory<TCommand, TDomain>
+	{
+		private readonly IEnumerable<ICreateCommandHandler<TCommand, TDomain>> _creators;
+
+		public CreateHandlerFactory(IEnumerable<ICreateCommandHandler<TCommand, TDomain>> creator)
+		{
+			_creators = creator;
+		}
+
+		public ICreateCommandHandler<TCommand, TDomain> BuildCreator()
+		{
+			return _creators.Count() > 1
+				? _creators.FirstOrDefault(updater => !(updater is DefaultMappingCreator<TCommand, TDomain>))
+				: _creators.FirstOrDefault();
+		}
 	}
 
 	public class CreateCommandHandler<TCreateCommand, TDomain> : IQueryHandler<TCreateCommand, TDomain>
@@ -24,11 +47,11 @@ namespace Guidelines.Core.Commands
 		private readonly IEnumerable<ICommandPermision<TCreateCommand, TDomain>> _commandPermisions;
 		private readonly ICreateCommandHandler<TCreateCommand, TDomain> _creator;
 
-		public CreateCommandHandler(IRepository<TDomain> repository, IValidationEngine validationEngine, IEnumerable<IPermision<TDomain>> permisionSet, ICreateCommandHandler<TCreateCommand, TDomain> creator, IEnumerable<ICommandPermision<TCreateCommand, TDomain>> commandPermisions)
+		public CreateCommandHandler(IRepository<TDomain> repository, IValidationEngine validationEngine, IEnumerable<IPermision<TDomain>> permisionSet, ICreateHandlerFactory<TCreateCommand, TDomain> creator, IEnumerable<ICommandPermision<TCreateCommand, TDomain>> commandPermisions)
 		{
 			_repository = repository;
 			_commandPermisions = commandPermisions;
-			_creator = creator;
+			_creator = creator.BuildCreator();
 			_permisionSet = permisionSet;
 			_validationEngine = validationEngine;
 		}

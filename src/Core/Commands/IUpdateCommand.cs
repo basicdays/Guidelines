@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security;
 using Guidelines.Core.Properties;
 using Guidelines.Core.Specifications;
@@ -17,6 +18,27 @@ namespace Guidelines.Core.Commands
 		TDomain Update(TCommand command, TDomain workOn);
 	}
 
+	public interface IUpdateHandlerFactory<in TCommand, TDomain> {
+		IUpdateCommandHandler<TCommand, TDomain> BuildUpdater();
+	}
+
+	public class UpdateHandlerFactory<TCommand, TDomain> : IUpdateHandlerFactory<TCommand, TDomain>
+	{
+		private readonly IEnumerable<IUpdateCommandHandler<TCommand, TDomain>> _updater;
+
+		public UpdateHandlerFactory(IEnumerable<IUpdateCommandHandler<TCommand, TDomain>> updater)
+		{
+			_updater = updater;
+		}
+
+		public IUpdateCommandHandler<TCommand, TDomain> BuildUpdater()
+		{
+			return _updater.Count() > 1 
+				? _updater.FirstOrDefault(updater => !(updater is DefaultMappingUpdater<TCommand, TDomain>)) 
+				: _updater.FirstOrDefault();
+		}
+	}
+
 	public class UpdateCommandHandler<TUpdateCommand, TDomain> : ICommandHandler<TUpdateCommand>
 		where TUpdateCommand : IUpdateCommand<TDomain>
 		where TDomain : class
@@ -27,11 +49,11 @@ namespace Guidelines.Core.Commands
 		private readonly IEnumerable<ICommandPermision<TUpdateCommand, TDomain>> _commandPermisions;
 		private readonly IUpdateCommandHandler<TUpdateCommand, TDomain> _updater;
 
-		public UpdateCommandHandler(IRepository<TDomain> repository, IValidationEngine validationEngine, IEnumerable<IPermision<TDomain>> permisionSet, IUpdateCommandHandler<TUpdateCommand, TDomain> updater, IEnumerable<ICommandPermision<TUpdateCommand, TDomain>> commandPermisions)
+		public UpdateCommandHandler(IRepository<TDomain> repository, IValidationEngine validationEngine, IEnumerable<IPermision<TDomain>> permisionSet, IUpdateHandlerFactory<TUpdateCommand, TDomain> updaterFactory, IEnumerable<ICommandPermision<TUpdateCommand, TDomain>> commandPermisions)
 		{
 			_repository = repository;
 			_commandPermisions = commandPermisions;
-			_updater = updater;
+			_updater = updaterFactory.BuildUpdater();
 			_permisionSet = permisionSet;
 			_validationEngine = validationEngine;
 		}
