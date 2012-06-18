@@ -6,39 +6,12 @@ namespace Guidelines.DataAccess.Mongo
 	//review: could we call this MongoServerProvider to match MongoServer?
 	public class MongoServerProvider : IMongoServerProvider
 	{
-		private readonly IMongoConfigProvider _configurationProvider;
-		//private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+		private readonly MongoServer _server;
 
-		public MongoServerProvider(IMongoConfigProvider configurationProvider)
+		public MongoServerProvider(IConnectionStringProvider connectionStringProvider)
 		{
-			_configurationProvider = configurationProvider;
-		}
-
-		/// <summary>
-		/// Gets an instance of <see cref="MongoServer"/> using settings for the
-		/// current AppEnvironment.Instance
-		/// </summary>
-		/// <returns></returns>
-		public MongoServer Create()
-		{
-			return Create("local");//AppEnvironment.Instance.AppEnvironmentName);
-		}
-
-		/// <summary>
-		/// Gets an instance of <see cref="MongoServer"/> using settings for the
-		/// given AppEnvironmentName value.
-		/// </summary>
-		/// <param name="appEnvironment">
-		/// Following environments are supported: <code>Development</code>, <code>Beta</code> & <code>Production</code>
-		/// </param>
-		/// <remarks>Value is not case-sensitive. Also supports *64 versions of the appEnvironment</remarks>        
-		/// <returns></returns>
-		public MongoServer Create(string appEnvironment)
-		{
-			var connectionString = _configurationProvider.GetConnectionString(appEnvironment);
-			//Log.DebugFormat("MongoDB Connection String: {0}", connectionString);
-
-			return MongoServer.Create(connectionString);
+			var connectionString = connectionStringProvider.GetConnectionString();
+			_server = MongoServer.Create(connectionString);
 		}
 
 		///<summary>
@@ -52,18 +25,19 @@ namespace Guidelines.DataAccess.Mongo
 		///<returns>a reference to the collection</returns>
 		public MongoCollection<T> GetCollection<T>(string database, string collectionName, MongoCredentials credentials)
 		{
-			return Create().GetDatabase(database, credentials).GetCollection<T>(collectionName);
+			return _server.GetDatabase(database, credentials).GetCollection<T>(collectionName);
 		}
+
 		///<summary>
 		/// Gets a reference to a <see cref="MongoCollection{T}"/> for the given <c>database</c> and
 		/// <c>collectionName</c> using given by <c>username</c> and <c>password</c>
 		///</summary>
-		///<param name="database">name of the database</param>
-		///<param name="collectionName">name of the collection</param>
-		///<param name="username">username for authenticating</param>
-		///<param name="password">password for authenticating</param>
-		///<typeparam name="T">type of an individual item in the collection</typeparam>
-		///<returns>a reference to the collection</returns>
+		///<param name="database">The name of the database</param>
+		///<param name="collectionName">The name of the collection</param>
+		///<param name="username">The username for authenticating</param>
+		///<param name="password">The password for authenticating</param>
+		///<typeparam name="T">Type of the items in the collection</typeparam>
+		///<returns>A reference to the collection</returns>
 		public MongoCollection<T> GetCollection<T>(string database, string collectionName, string username, string password)
 		{
 			return GetCollection<T>(database, collectionName, new MongoCredentials(username, password));
@@ -77,7 +51,7 @@ namespace Guidelines.DataAccess.Mongo
 		///<param name="collectionName">name of the collection</param>
 		///<param name="username">username for authenticating</param>
 		///<param name="password">password for authenticating</param>
-		///<returns>a reference to the collection</returns>
+		///<returns>a reference to the collection in bson</returns>
 		public MongoCollection<BsonDocument> GetCollection(string database, string collectionName, string username, string password)
 		{
 			return GetCollection(database, collectionName, new MongoCredentials(username, password));
@@ -87,17 +61,17 @@ namespace Guidelines.DataAccess.Mongo
 		/// Gets a reference to a <see cref="MongoCollection"/> for the given <c>database</c> and
 		/// <c>collectionName</c> using authentication information given by <c>credentials</c>
 		///</summary>
-		///<param name="database">name of the database</param>
-		///<param name="collectionName">name of the collection</param>
-		///<param name="credentials">credentials needed to connect to the database</param>
-		///<returns>a reference to the collection</returns>
+		///<param name="database">The name of the database</param>
+		///<param name="collectionName">The name of the collection</param>
+		///<param name="credentials">The credentials needed to connect to the database</param>
+		///<returns>A reference to the collection in bson</returns>
 		public MongoCollection<BsonDocument> GetCollection(string database, string collectionName, MongoCredentials credentials)
 		{
-			return Create().GetDatabase(database, credentials).GetCollection(collectionName);
+			return _server.GetDatabase(database, credentials).GetCollection(collectionName);
 		}
 
 		/// <summary>
-		/// Gets a reference to a <see cref="MongoDatabase"/>
+		/// Gets a reference to a <see cref="MongoDatabase"/> with authentication
 		/// </summary>
 		/// <param name="database">The database.</param>
 		/// <param name="username">The username.</param>
@@ -105,12 +79,17 @@ namespace Guidelines.DataAccess.Mongo
 		/// <returns></returns>
 		public MongoDatabase GetDatabase(string database, string username, string password)
 		{
-			return Create().GetDatabase(database, new MongoCredentials(username, password));
+			return _server.GetDatabase(database, new MongoCredentials(username, password));
 		}
 
+		/// <summary>
+		/// Gets a reference to a <see cref="MongoDatabase"/> with no authentication
+		/// </summary>
+		/// <param name="database">The database.</param>
+		/// <returns></returns>
 		public MongoDatabase GetDatabase(string database)
 		{
-			return Create().GetDatabase(database);
+			return _server.GetDatabase(database);
 		}
 	}
 }

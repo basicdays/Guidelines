@@ -22,7 +22,7 @@ namespace Guidelines.IntegrationTests.Commands
 
 			For<ILocalizationProvider>().Use<LocalizationProvider>();
 			For<ICommandMessageProcessor>().Use<CommandMessageProcessor>();
-
+			For<>()
 			Scan(scanner =>
 			{
 				scanner.AssemblyContainingType<TestRegistry>();

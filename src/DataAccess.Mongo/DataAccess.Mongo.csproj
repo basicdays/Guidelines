@@ -50,7 +50,7 @@
     <Compile Include="Helpers\TextSerializer.cs" />
     <Compile Include="IMongoClassMap.cs" />
     <Compile Include="IMongoCollectionProvider.cs" />
-    <Compile Include="IMongoConfigProvider.cs" />
+    <Compile Include="IConnectionStringProvider.cs" />
     <Compile Include="IMongoCredentialProvider.cs" />
     <Compile Include="IMongoDataSource.cs" />
     <Compile Include="IMongoServerProvider.cs" />
