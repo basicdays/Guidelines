@@ -1,6 +1,5 @@
-﻿using System.Linq;
+﻿using System;
 using Guidelines.Core;
-using Guidelines.Core.Commands;
 using Guidelines.Ioc.StructureMap.Bootstrap;
 using NUnit.Framework;
 using StructureMap;

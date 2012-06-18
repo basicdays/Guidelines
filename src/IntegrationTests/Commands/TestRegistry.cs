@@ -22,20 +22,20 @@ namespace Guidelines.IntegrationTests.Commands
 
 			For<ILocalizationProvider>().Use<LocalizationProvider>();
 			For<ICommandMessageProcessor>().Use<CommandMessageProcessor>();
-			For<>()
+
 			Scan(scanner =>
 			{
 				scanner.AssemblyContainingType<TestRegistry>();
 				scanner.Convention<DefaultMapperConvention>();
 				scanner.Convention<CommandPreprocessorConvention>();
+				scanner.Convention<CommitHookConvention>();
 				scanner.Convention<DefaultCrudConvention>();
-				scanner.Convention<QuerryProcessorConvention>();
-				scanner.Convention<ActionProcessorConvention>();
-				scanner.AddAllTypesOf(typeof(ICommandPermision<,>));
-				scanner.AddAllTypesOf(typeof(IPermision<>));
-				scanner.AddAllTypesOf(typeof(Profile));
-				scanner.AddAllTypesOf(typeof (IUpdateCommandHandler<,>));
-				scanner.AddAllTypesOf(typeof (ICreateCommandHandler<,>));
+				scanner.Convention<CommandProcessorConvention>();
+				scanner.AddAllTypesOf<Profile>();
+				scanner.ConnectImplementationsToTypesClosing(typeof (ICommandPermision<,>));
+				scanner.ConnectImplementationsToTypesClosing(typeof (IPermision<>));
+				scanner.ConnectImplementationsToTypesClosing(typeof (IUpdateCommandHandler<,>));
+				scanner.ConnectImplementationsToTypesClosing(typeof (ICreateCommandHandler<,>));
 				scanner.WithDefaultConventions();
 			});
 		}

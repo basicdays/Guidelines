@@ -24,6 +24,7 @@ namespace Guidelines.IntegrationTests.Commands
 				}
 			});
 			For<IBootstrapTask>().Add<AutoMapperTask>();
+			For<IBootstrapTask>().Add<DefaultMappingsLoaderTask>().Ctor<bool>("generateKeys").Is(true);
 			For<IApplicationServiceProvider>().Use<ApplicationServiceProvider>();
 		}
 	}

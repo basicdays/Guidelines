@@ -12,16 +12,21 @@ namespace Guidelines.Ioc.StructureMap.Conventions
 		{
 			if (type.ImplementsInterfaceTemplate(genericCommand))
 			{
-				var interfaceType = type.FindFirstInterfaceThatCloses(genericCommand);
-				var domainEntityType = interfaceType.GetGenericArguments()[0];
+				Type interfaceType = type.FindFirstInterfaceThatCloses(genericCommand);
+				Type domainEntityType = interfaceType.GetGenericArguments()[0];
 
 				Type closesCommandHandlerInterface = GetHandlerType(type, domainEntityType, registry);
 
-				var closesCommandHandler =
+				Type closesCommandHandler =
 					handler.MakeGenericType(type, domainEntityType);
 
 				registry.For(closesCommandHandlerInterface).Use(closesCommandHandler);
 				registry.For(genericCommand).Use(type);
+
+				if (typeof(IRegisterMappings).IsAssignableFrom(closesCommandHandler))
+				{
+					registry.For(typeof(IRegisterMappings)).Add(closesCommandHandler);
+				}
 			}
 		}
 
@@ -55,6 +60,20 @@ namespace Guidelines.Ioc.StructureMap.Conventions
 			return openCommandHandlerInterface.MakeGenericType(commandType, returnType);
 		}
 
+		private static void RegisterFactory(Type type, Registry registry, Type genericCommand, Type factoryInterface, Type factoryInstace)
+		{
+			if (type.ImplementsInterfaceTemplate(genericCommand))
+			{
+				Type interfaceType = type.FindFirstInterfaceThatCloses(genericCommand);
+				Type domainEntityType = interfaceType.GetGenericArguments()[0];
+
+				Type closedFactoryInterface = factoryInterface.MakeGenericType(type, domainEntityType);
+				Type closedFactoryType = factoryInstace.MakeGenericType(type, domainEntityType);
+
+				registry.For(closedFactoryInterface).Use(closedFactoryType);
+			}
+		}
+
 		public void Process(Type type, Registry registry)
 		{
 			RegisterTypes(type, registry, typeof(IUpdateCommand<>), typeof(UpdateCommandHandler<,>), RegisterCommandProcessors);
@@ -62,6 +81,9 @@ namespace Guidelines.Ioc.StructureMap.Conventions
 
 			RegisterTypes(type, registry, typeof(ICreateCommand<>), typeof(CreateCommandHandler<,>), RegisterQueryProcessors);
 			RegisterTypes(type, registry, typeof(IGetCommand<>), typeof(GetCommandHandler<,>), RegisterQueryProcessors);
+
+			RegisterFactory(type, registry, typeof(IUpdateCommand<>), typeof(IUpdateHandlerFactory<,>), typeof(UpdateHandlerFactory<,>));
+			RegisterFactory(type, registry, typeof(ICreateCommand<>), typeof(ICreateHandlerFactory<,>), typeof(CreateHandlerFactory<,>));
 		}
 	}
 }

@@ -61,10 +61,10 @@
     <Compile Include="Conventions\CommitHookConvention.cs" />
     <Compile Include="Conventions\DefaultCrudConvention.cs" />
     <Compile Include="Conventions\DefaultMapperConvention.cs" />
+    <Compile Include="Conventions\FacadeConvention.cs" />
     <Compile Include="IStructuremapRegistrar.cs" />
-    <Compile Include="Conventions\ActionProcessorConvention.cs" />
+    <Compile Include="Conventions\CommandProcessorConvention.cs" />
     <Compile Include="Conventions\CommandPreprocessorConvention.cs" />
-    <Compile Include="Conventions\QuerryProcessorConvention.cs" />
     <Compile Include="IocInfrastructureMarker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -76,10 +76,6 @@
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{9BC41FF7-EDBC-4367-B740-0302840DABAE}</Project>
       <Name>Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Mapping.AutoMapper\Mapping.AutoMapper.csproj">
-      <Project>{334D4A72-D3A8-441D-BE43-6F144C02EC78}</Project>
-      <Name>Mapping.AutoMapper</Name>
     </ProjectReference>
     <ProjectReference Include="..\WebUI\WebUI.csproj">
       <Project>{483AC3D4-CCF6-4B84-B954-6492EC545C11}</Project>
