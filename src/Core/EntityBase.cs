@@ -12,7 +12,7 @@ namespace Guidelines.Core
 	/// </summary>
 	/// <typeparam name="TType">The object that is using the conventional Equals methods.</typeparam>
 	[ValidateObject]
-	public abstract class EntityBase<TType> : IEquatable<TType>, IComparable<TType>
+	public abstract class EntityBase<TType> : IEquatable<TType>, IComparable<TType>, IIdentifiable<Guid?>
 		where TType : EntityBase<TType>
 	{
 		public Guid? Id { get; set; }

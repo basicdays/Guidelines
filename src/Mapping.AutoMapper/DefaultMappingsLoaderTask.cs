@@ -36,19 +36,22 @@ namespace Guidelines.Mapping.AutoMapper
 			return mappingToRegiseter.KeyGenerationMethod == KeyGenerationMethod.Generate;
 		}
 
-		public Action<IMemberConfigurationExpression> GenerateKey
+		public Action<IMemberConfigurationExpression> GenerateKey(Type inputType, Type idType)
 		{
-			get { return opt => opt.ResolveUsing<NewGuidIdResolver>(); }
+			var resolverType = typeof (NewIdResolver<,>).MakeGenericType(inputType, idType);
+
+			return opt => opt.ResolveUsing(resolverType);
+			//return opt => opt.ResolveUsing<NewGuidIdResolver>();
 		}
 
-		public Action<IMemberConfigurationExpression> IgnoreKey
+		public Action<IMemberConfigurationExpression> IgnoreKey(Type inputType, Type idType)
 		{
-			get { return opt => opt.Ignore(); }
+			return opt => opt.Ignore();
 		}
 
-		public Action<IMemberConfigurationExpression> DefaultKeyGenerationMethod
+		public Action<IMemberConfigurationExpression> DefaultKeyGenerationMethod(Type inputType, Type idType)
 		{
-			get { return _generateKeys ? GenerateKey : IgnoreKey; }
+			return _generateKeys ? GenerateKey(inputType, idType) : IgnoreKey(inputType, idType);
 		}
 
 		public void Bootstrap()
@@ -56,8 +59,8 @@ namespace Guidelines.Mapping.AutoMapper
 			var mappingsByDestination = _mappingsToRegister.GroupBy(toRegister => toRegister.DestinationType);
 
 			foreach (IGrouping<Type, IRegisterMappings> mappingGroup in mappingsByDestination) {
-				var mappingLoader = new TypeMappingLoader(mappingGroup.Key, _configuration);
-
+				var mappingLoader = new TypeMappingLoader(mappingGroup.Key, mappingGroup.First().IdType, _configuration);
+				
 				mappingLoader.CreateMappingConfigurations(mappingGroup.Where(HasNoKeyGeneration), IgnoreKey);
 				mappingLoader.CreateMappingConfigurations(mappingGroup.Where(GeneratesKey), GenerateKey);
 				mappingLoader.CreateMappingConfigurations(mappingGroup.Where(HadDefaultKeyGeneration), DefaultKeyGenerationMethod);

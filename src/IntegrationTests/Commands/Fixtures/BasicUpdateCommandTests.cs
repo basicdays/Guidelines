@@ -15,7 +15,7 @@ namespace Guidelines.IntegrationTests.Commands.Fixtures
 
 		public class Update : IUpdateCommand<TestEntity>
 		{
-			public Guid Id { get; set; }
+			public Guid? Id { get; set; }
 			public string Name { get; set; }
 		}
 

@@ -81,6 +81,8 @@
     <Compile Include="Commands\KeyGenerationMethod.cs" />
     <Compile Include="Commands\UpdateCommandHandler.cs" />
     <Compile Include="Commands\UpdateHandlerFactory.cs" />
+    <Compile Include="GuidIdGenerator.cs" />
+    <Compile Include="IIdentifiable.cs" />
     <Compile Include="IPermision.cs" />
     <Compile Include="Commands\IPostCommitCommandRegistrar.cs" />
     <Compile Include="Commands\IQueryHandler.cs" />

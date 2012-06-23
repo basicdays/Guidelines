@@ -17,7 +17,7 @@ namespace Guidelines.Core.Commands
             _serviceProvider = serviceProvider;
         }
 
-        private Queue<Action> Actions
+        private static Queue<Action> Actions
         {
             get { return _actions ?? (_actions = new Queue<Action>()); }
         } 

@@ -7,17 +7,17 @@ using Guidelines.Core.Validation;
 
 namespace Guidelines.Core.Commands
 {
-	public class CreateCommandHandler<TCreateCommand, TDomain> : IQueryHandler<TCreateCommand, TDomain>, IRegisterMappings
-		where TCreateCommand : ICreateCommand<TDomain>
-		where TDomain : class
+	public class CreateCommandHandler<TCreateCommand, TDomain, TId> : IQueryHandler<TCreateCommand, TDomain>, IRegisterMappings
+		where TCreateCommand : ICreateCommand<TDomain, TId>
+		where TDomain : class, IIdentifiable<TId>
 	{
-		private readonly IRepository<TDomain> _repository;
+		private readonly IRepository<TDomain, TId> _repository;
 		private readonly IValidationEngine _validationEngine;
 		private readonly IEnumerable<IPermision<TDomain>> _permisionSet;
 		private readonly IEnumerable<ICommandPermision<TCreateCommand, TDomain>> _commandPermisions;
 		private readonly ICreateCommandHandler<TCreateCommand, TDomain> _creator;
 
-		public CreateCommandHandler(IRepository<TDomain> repository, IValidationEngine validationEngine, IEnumerable<IPermision<TDomain>> permisionSet, ICreateHandlerFactory<TCreateCommand, TDomain> creator, IEnumerable<ICommandPermision<TCreateCommand, TDomain>> commandPermisions)
+		public CreateCommandHandler(IRepository<TDomain, TId> repository, IValidationEngine validationEngine, IEnumerable<IPermision<TDomain>> permisionSet, ICreateHandlerFactory<TCreateCommand, TDomain> creator, IEnumerable<ICommandPermision<TCreateCommand, TDomain>> commandPermisions)
 		{
 			_repository = repository;
 			_commandPermisions = commandPermisions;
@@ -49,6 +49,11 @@ namespace Guidelines.Core.Commands
 		public Type SourceType
 		{
 			get { return typeof (TCreateCommand); }
+		}
+
+		public Type IdType
+		{
+			get { return typeof(TId); }
 		}
 
 		public Type DestinationType

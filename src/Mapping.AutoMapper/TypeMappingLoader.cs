@@ -9,11 +9,13 @@ namespace Guidelines.Mapping.AutoMapper
 	public class TypeMappingLoader
 	{
 		private readonly Type _domainType;
+		private readonly Type _idType;
 		private readonly ConfigurationStore _configuration;
 
-		public TypeMappingLoader(Type domainType, ConfigurationStore configuration)
+		public TypeMappingLoader(Type domainType, Type idType, ConfigurationStore configuration)
 		{
 			_domainType = domainType;
+			_idType = idType;
 			_configuration = configuration;
 		}
 
@@ -25,13 +27,13 @@ namespace Guidelines.Mapping.AutoMapper
 			return map == null;
 		}
 
-		public void CreateMappingConfigurations(IEnumerable<IRegisterMappings> commands, Action<IMemberConfigurationExpression> idExpression)
+		public void CreateMappingConfigurations(IEnumerable<IRegisterMappings> commands, Func<Type, Type, Action<IMemberConfigurationExpression>> idExpression)
 		{
 			var unconfiguredCommands = commands.Select(map => map.SourceType).Where(TypeIsNotConfigured);
 
 			foreach (Type sourceType in unconfiguredCommands)
 			{
-				_configuration.CreateMap(sourceType, _domainType).ForMember("Id", idExpression);
+				_configuration.CreateMap(sourceType, _domainType).ForMember("Id", idExpression(_domainType, _idType));
 			}
 		}
 	}

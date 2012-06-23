@@ -2,8 +2,14 @@
 
 namespace Guidelines.Core.Commands
 {
-	public interface IGetCommand<TDomain>
+	public interface IGetCommand<TDomain> : IGetCommand<TDomain, Guid?>
+		where TDomain : EntityBase<TDomain>
 	{
-		Guid Id { get; }
+
+	}
+	public interface IGetCommand<TDomain, out TId>
+		where TDomain : IIdentifiable<TId>
+	{
+		TId Id { get; }
 	}
 }

@@ -6,6 +6,7 @@ namespace Guidelines.Core.Commands
 	{
 		Type SourceType { get; }
 		Type DestinationType { get; }
+		Type IdType { get; }
 
 		KeyGenerationMethod KeyGenerationMethod { get; }
 	}

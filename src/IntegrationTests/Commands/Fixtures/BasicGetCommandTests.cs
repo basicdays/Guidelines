@@ -14,7 +14,7 @@ namespace Guidelines.IntegrationTests.Commands.Fixtures
 
 		public class Get : IGetCommand<TestEntity>
 		{
-			public Guid Id { get; set; }
+			public Guid? Id { get; set; }
 		}
 
 		public override void SetupTestContext()

@@ -1,12 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using Guidelines.Core;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 
 namespace Guidelines.DataAccess.Mongo
 {
-	public class MongoRepository<TDomain> : IRepository<TDomain>
+	public class MongoRepository<TDomain> : MongoRepository<TDomain, Guid?>
 		where TDomain : EntityBase<TDomain>
+	{
+		public MongoRepository(IMongoCollectionProvider<TDomain> collectionProvider) 
+			: base(collectionProvider) {}
+	}
+
+	public class MongoRepository<TDomain, TId> : IRepository<TDomain, TId>
+		where TDomain : IIdentifiable<TId>
 	{
 		private readonly MongoCollection<TDomain> _collection;
 
@@ -15,9 +24,14 @@ namespace Guidelines.DataAccess.Mongo
 			_collection = collectionProvider.GetCollection();
 		}
 
-		public TDomain GetById(Guid id)
+		public TDomain GetById(TId id)
 		{
-			return _collection.FindOneById(id);
+			return _collection.FindOneById(BsonValue.Create(id));
+		}
+
+		public IEnumerable<TDomain> GetAll()
+		{
+			return _collection.FindAll();
 		}
 
 		public TDomain Insert(TDomain toInsert)
@@ -36,7 +50,8 @@ namespace Guidelines.DataAccess.Mongo
 
 		public void Delete(TDomain toDelete)
 		{
-			_collection.Remove(Query.EQ("_id", toDelete.Id));
+			var id = BsonValue.Create(toDelete.Id);
+			_collection.Remove(Query.EQ("_id", id));
 		}
 	}
 }

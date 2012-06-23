@@ -1,4 +1,5 @@
 ﻿using System;
+using Guidelines.Core;
 using Guidelines.Core.Commands;
 using StructureMap.Configuration.DSL;
 using StructureMap.Graph;
@@ -14,11 +15,12 @@ namespace Guidelines.Ioc.StructureMap.Conventions
 			{
 				Type interfaceType = type.FindFirstInterfaceThatCloses(genericCommand);
 				Type domainEntityType = interfaceType.GetGenericArguments()[0];
+				Type idType = interfaceType.GetGenericArguments()[1];
 
 				Type closesCommandHandlerInterface = GetHandlerType(type, domainEntityType, registry);
 
 				Type closesCommandHandler =
-					handler.MakeGenericType(type, domainEntityType);
+					handler.MakeGenericType(type, domainEntityType, idType);
 
 				registry.For(closesCommandHandlerInterface).Use(closesCommandHandler);
 				registry.For(genericCommand).Use(type);
@@ -76,14 +78,35 @@ namespace Guidelines.Ioc.StructureMap.Conventions
 
 		public void Process(Type type, Registry registry)
 		{
-			RegisterTypes(type, registry, typeof(IUpdateCommand<>), typeof(UpdateCommandHandler<,>), RegisterCommandProcessors);
-			RegisterTypes(type, registry, typeof(IDeleteCommand<>), typeof(DeleteCommandHandler<,>), RegisterCommandProcessors);
+			RegisterTypes(type, registry, typeof(IUpdateCommand<,>), typeof(UpdateCommandHandler<,,>), RegisterCommandProcessors);
+			RegisterTypes(type, registry, typeof(IDeleteCommand<,>), typeof(DeleteCommandHandler<,,>), RegisterCommandProcessors);
 
-			RegisterTypes(type, registry, typeof(ICreateCommand<>), typeof(CreateCommandHandler<,>), RegisterQueryProcessors);
-			RegisterTypes(type, registry, typeof(IGetCommand<>), typeof(GetCommandHandler<,>), RegisterQueryProcessors);
+			RegisterTypes(type, registry, typeof(ICreateCommand<,>), typeof(CreateCommandHandler<,,>), RegisterQueryProcessors);
+			RegisterTypes(type, registry, typeof(IGetCommand<,>), typeof(GetCommandHandler<,,>), RegisterQueryProcessors);
 
-			RegisterFactory(type, registry, typeof(IUpdateCommand<>), typeof(IUpdateHandlerFactory<,>), typeof(UpdateHandlerFactory<,>));
-			RegisterFactory(type, registry, typeof(ICreateCommand<>), typeof(ICreateHandlerFactory<,>), typeof(CreateHandlerFactory<,>));
+			RegisterFactory(type, registry, typeof(IUpdateCommand<,>), typeof(IUpdateHandlerFactory<,>), typeof(UpdateHandlerFactory<,>));
+			RegisterFactory(type, registry, typeof(ICreateCommand<,>), typeof(ICreateHandlerFactory<,>), typeof(CreateHandlerFactory<,>));
+		}
+	}
+
+	public class GuidConvention : IRegistrationConvention
+	{
+		public void Process(Type type, Registry registry)
+		{
+			if (type.ImplementsInterfaceTemplate(typeof(ICreateCommand<>)))
+			{
+				Type interfaceType = type.FindFirstInterfaceThatCloses(typeof(ICreateCommand<>));
+				Type domainEntityType = interfaceType.GetGenericArguments()[0];
+
+				var openIdGeneratorType = typeof(IIdGenerator<,>);
+				var closedIdGeneratorType =
+					openIdGeneratorType.MakeGenericType(domainEntityType, typeof(Guid?));
+
+				var openGuidGenerator = typeof(GuidIdGenerator<>);
+				var closedGuidIdGenerator = openGuidGenerator.MakeGenericType(domainEntityType);
+
+				registry.For(closedIdGeneratorType).Use(closedGuidIdGenerator);
+			}
 		}
 	}
 }

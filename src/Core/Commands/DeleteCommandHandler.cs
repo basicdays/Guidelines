@@ -5,15 +5,15 @@ using Guidelines.Core.Specifications;
 
 namespace Guidelines.Core.Commands
 {
-	public class DeleteCommandHandler<TDeleteCommand, TDomain> : ICommandHandler<TDeleteCommand>
-		where TDeleteCommand : IDeleteCommand<TDomain>
-		where TDomain : class
+	public class DeleteCommandHandler<TDeleteCommand, TDomain, TId> : ICommandHandler<TDeleteCommand>
+		where TDeleteCommand : IDeleteCommand<TDomain, TId>
+		where TDomain : class, IIdentifiable<TId>
 	{
-		private readonly IRepository<TDomain> _repository;
+		private readonly IRepository<TDomain, TId> _repository;
 		private readonly IEnumerable<IPermision<TDomain>> _permisionSet;
 		private readonly IEnumerable<ICommandPermision<TDeleteCommand, TDomain>> _commandPermisions;
 
-		public DeleteCommandHandler(IRepository<TDomain> repository, IEnumerable<IPermision<TDomain>> permisionSet, IEnumerable<ICommandPermision<TDeleteCommand, TDomain>> commandPermisions)
+		public DeleteCommandHandler(IRepository<TDomain, TId> repository, IEnumerable<IPermision<TDomain>> permisionSet, IEnumerable<ICommandPermision<TDeleteCommand, TDomain>> commandPermisions)
 		{
 			_repository = repository;
 			_commandPermisions = commandPermisions;

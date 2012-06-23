@@ -7,17 +7,17 @@ using Guidelines.Core.Validation;
 
 namespace Guidelines.Core.Commands
 {
-	public class UpdateCommandHandler<TUpdateCommand, TDomain> : ICommandHandler<TUpdateCommand>, IRegisterMappings
-		where TUpdateCommand : IUpdateCommand<TDomain>
-		where TDomain : class
+	public class UpdateCommandHandler<TUpdateCommand, TDomain, TId> : ICommandHandler<TUpdateCommand>, IRegisterMappings
+		where TUpdateCommand : IUpdateCommand<TDomain, TId>
+		where TDomain : class, IIdentifiable<TId>
 	{
-		private readonly IRepository<TDomain> _repository;
+		private readonly IRepository<TDomain, TId> _repository;
 		private readonly IValidationEngine _validationEngine;
 		private readonly IEnumerable<IPermision<TDomain>> _permisionSet;
 		private readonly IEnumerable<ICommandPermision<TUpdateCommand, TDomain>> _commandPermisions;
 		private readonly IUpdateCommandHandler<TUpdateCommand, TDomain> _updater;
 
-		public UpdateCommandHandler(IRepository<TDomain> repository, IValidationEngine validationEngine, IEnumerable<IPermision<TDomain>> permisionSet, IUpdateHandlerFactory<TUpdateCommand, TDomain> updaterFactory, IEnumerable<ICommandPermision<TUpdateCommand, TDomain>> commandPermisions)
+		public UpdateCommandHandler(IRepository<TDomain, TId> repository, IValidationEngine validationEngine, IEnumerable<IPermision<TDomain>> permisionSet, IUpdateHandlerFactory<TUpdateCommand, TDomain> updaterFactory, IEnumerable<ICommandPermision<TUpdateCommand, TDomain>> commandPermisions)
 		{
 			_repository = repository;
 			_commandPermisions = commandPermisions;
@@ -54,6 +54,11 @@ namespace Guidelines.Core.Commands
 		public Type DestinationType
 		{
 			get { return typeof(TDomain); }
+		}
+
+		public Type IdType
+		{
+			get { return typeof(TId); }
 		}
 
 		public KeyGenerationMethod KeyGenerationMethod

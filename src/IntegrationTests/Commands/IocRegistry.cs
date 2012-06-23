@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.Design;
 using Guidelines.Core;
 using Guidelines.Core.Bootstrap;
+using Guidelines.Core.Commands;
 using Guidelines.Ioc.StructureMap;
 using Guidelines.Ioc.StructureMap.Adaptors;
 using Guidelines.Mapping.AutoMapper;
@@ -26,6 +27,8 @@ namespace Guidelines.IntegrationTests.Commands
 			For<IBootstrapTask>().Add<AutoMapperTask>();
 			For<IBootstrapTask>().Add<DefaultMappingsLoaderTask>().Ctor<bool>("generateKeys").Is(true);
 			For<IApplicationServiceProvider>().Use<ApplicationServiceProvider>();
+			For<IPostCommitCommandRegistrar>().Use<PostCommitCommandRegistrar>();
+			For<ICommitHook>().Add<PostCommitCommandRegistrar>();
 		}
 	}
 }

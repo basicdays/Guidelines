@@ -15,7 +15,7 @@ namespace Guidelines.IntegrationTests.Commands.Fixtures
 
 		public class BlockedCommand : IUpdateCommand<DeniedEntity>
 		{
-			public Guid Id { get; set; }
+			public Guid? Id { get; set; }
 		}
 
 		public class BlockCommandPrivilage : IPermision<DeniedEntity>

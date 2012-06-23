@@ -69,6 +69,7 @@
     <Compile Include="Commands\Fixtures\CommitHookTests.cs" />
     <Compile Include="Commands\Fixtures\CreateCommandWithSpecificMapperTests.cs" />
     <Compile Include="Commands\Fixtures\CrudCommandTest.cs" />
+    <Compile Include="Commands\Fixtures\PostCommitCommandTests.cs" />
     <Compile Include="Commands\Fixtures\ProtoectedCommandTests.cs" />
     <Compile Include="Commands\Fixtures\SpecifiedCreateCommand.cs" />
     <Compile Include="Commands\Fixtures\SpecifiedUpdateCommand.cs" />

@@ -2,8 +2,15 @@
 
 namespace Guidelines.Core.Commands
 {
-	public interface IUpdateCommand<TDomain>
+	public interface IUpdateCommand<TDomain> : IUpdateCommand<TDomain, Guid?>
+		where TDomain : EntityBase<TDomain>
 	{
-		Guid Id { get; }
+		
+	}
+
+	public interface IUpdateCommand<TDomain, out TId>
+		where TDomain : IIdentifiable<TId>
+	{
+		TId Id { get; }
 	}
 }

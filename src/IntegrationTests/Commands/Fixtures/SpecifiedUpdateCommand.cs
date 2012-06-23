@@ -8,7 +8,7 @@ namespace Guidelines.IntegrationTests.Commands.Fixtures
 	{
 		public class SpecificUpdate : IUpdateCommand<TestEntity>
 		{
-			public Guid Id { get; set; }
+			public Guid? Id { get; set; }
 			public string TheNameSorce { get; set; }
 		}
 

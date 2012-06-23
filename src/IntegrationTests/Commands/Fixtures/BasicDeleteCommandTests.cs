@@ -12,7 +12,7 @@ namespace Guidelines.IntegrationTests.Commands.Fixtures
 
 		public class Delete : IDeleteCommand<TestEntity>
 		{
-			public Guid Id { get; set; }
+			public Guid? Id { get; set; }
 		}
 
 		public override void SetupTestContext()
