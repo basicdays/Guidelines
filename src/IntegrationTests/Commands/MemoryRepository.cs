@@ -4,16 +4,7 @@ using Guidelines.Core;
 
 namespace Guidelines.IntegrationTests.Commands
 {
-	public class MemoryRepository<TDomain> : MemoryRepository<TDomain, Guid?> 
-		where TDomain : IIdentifiable<Guid?>
-	{
-		public override Guid? GenerateId()
-		{
-			return Guid.NewGuid();
-		}
-	}
-
-	public class MemoryRepository<TDomain, TId> : IRepository<TDomain, TId>, IIdGenerator<TDomain, TId>
+	public class MemoryRepository<TDomain, TId> : IRepository<TDomain, TId>
 		where TDomain : IIdentifiable<TId>
 	{
 		public static Dictionary<TId, TDomain> _memoryCache = new Dictionary<TId, TDomain>();
@@ -65,10 +56,9 @@ namespace Guidelines.IntegrationTests.Commands
 		{
 			_memoryCache.Clear();
 		}
-
-		public virtual TId GenerateId()
-		{
-			return default(TId);
-		}
 	}
+
+	public class MemoryRepository<TDomain> : MemoryRepository<TDomain, Guid?>
+		where TDomain : IIdentifiable<Guid?>
+	{ }
 }

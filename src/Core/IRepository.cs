@@ -2,10 +2,6 @@
 
 namespace Guidelines.Core
 {
-	public interface IRepository<TDomain> : IRepository<TDomain, Guid?>
-		where TDomain : EntityBase<TDomain>
-	{ }
-
 	public interface IRepository<TDomain, in TId>
 		where TDomain : IIdentifiable<TId>
 	{

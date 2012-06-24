@@ -3,6 +3,7 @@ using System.Linq;
 using Guidelines.Core;
 using Guidelines.Core.Commands;
 using NUnit.Framework;
+using Guidelines.Core.Commands.GuidExtensions;
 
 namespace Guidelines.IntegrationTests.Commands.Fixtures
 {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Guidelines.Core.Commands;
+using Guidelines.Core.Commands.GuidExtensions;
 
 namespace Guidelines.IntegrationTests.Commands.Fixtures
 {

@@ -25,8 +25,8 @@ namespace Guidelines.Ioc.StructureMap.Conventions
 
 		public void Process(Type type, Registry registry)
 		{
-			RegisterTypes(type, registry, typeof(IUpdateCommand<>), typeof(DefaultMappingUpdater<,>), typeof(IUpdateCommandHandler<,>));
-			RegisterTypes(type, registry, typeof(ICreateCommand<>), typeof(DefaultMappingCreator<,>), typeof(ICreateCommandHandler<,>));
+			RegisterTypes(type, registry, typeof(IUpdateCommand<,>), typeof(DefaultMappingUpdater<,>), typeof(IUpdateCommandHandler<,>));
+			RegisterTypes(type, registry, typeof(ICreateCommand<,>), typeof(DefaultMappingCreator<,>), typeof(ICreateCommandHandler<,>));
 		}
 	}
 }

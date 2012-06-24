@@ -1,10 +1,8 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using Guidelines.Core;
 using Guidelines.Core.Commands;
 using Guidelines.Core.Validation;
 using Guidelines.Ioc.StructureMap.Conventions;
-using Guidelines.Mapping.AutoMapper.Resolvers;
 using Guidelines.WebUI;
 using log4net;
 using StructureMap.Configuration.DSL;

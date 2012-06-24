@@ -2,6 +2,7 @@
 using AutoMapper;
 using Guidelines.Core.Commands;
 using Guidelines.Mapping.AutoMapper.Resolvers;
+using Guidelines.Core.Commands.GuidExtensions;
 
 namespace Guidelines.IntegrationTests.Commands.Fixtures
 {

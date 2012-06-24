@@ -62,6 +62,7 @@
     <Compile Include="Conventions\DefaultCrudConvention.cs" />
     <Compile Include="Conventions\DefaultMapperConvention.cs" />
     <Compile Include="Conventions\FacadeConvention.cs" />
+    <Compile Include="Conventions\GuidConvention.cs" />
     <Compile Include="IStructuremapRegistrar.cs" />
     <Compile Include="Conventions\CommandProcessorConvention.cs" />
     <Compile Include="Conventions\CommandPreprocessorConvention.cs" />
