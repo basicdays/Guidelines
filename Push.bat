@@ -5,8 +5,9 @@ if [%1]==[] (
 )
 
 "tools\NuGet" Update -self
-"tools\NuGet" Push "build\packages\Guidelines.DataAccess.%1.nupkg"
-"tools\NuGet" Push "build\packages\Guidelines.Domain.%1.nupkg"
-"tools\NuGet" Push "build\packages\Guidelines.Ioc.%1.nupkg"
-"tools\NuGet" Push "build\packages\Guidelines.Mapping.%1.nupkg"
+"tools\NuGet" Push "build\packages\Guidelines.DataAccess.Mongo.%1.nupkg"
+"tools\NuGet" Push "build\packages\Guidelines.Core.%1.nupkg"
+"tools\NuGet" Push "build\packages\Guidelines.Ioc.StructureMap.%1.nupkg"
+"tools\NuGet" Push "build\packages\Guidelines.Mapping.AutoMapper.%1.nupkg"
+"tools\NuGet" Push "build\packages\Guidelines.Logging.Log4Net.%1.nupkg"
 "tools\NuGet" Push "build\packages\Guidelines.WebUI.%1.nupkg"
