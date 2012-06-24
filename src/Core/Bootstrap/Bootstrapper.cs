@@ -29,9 +29,6 @@ namespace Guidelines.Core.Bootstrap
 
 		private IList<IDisposable> DisposableTasks { get; set; }
 
-		//Review: Because we have required dependencies being loaded via extension methods, we are allowing the creating of invalid bostrappers
-		//guarantied to fail.  While I know the extensions look pretty, they are dangerous.  They really should only be for optional configuration
-		//items that you can use to add in or modify things.  They should not be used to supply required components for function.
 		public Bootstrapper(IDependencyRegistrar dependencyRegistrar, ILogger logger)
 		{
 			DisposableTasks = new List<IDisposable>();
