@@ -3,7 +3,7 @@
 namespace Guidelines.Core
 {
 	public class GuidIdGenerator<TDomain> : IIdGenerator<TDomain, Guid?>
-		where TDomain : EntityBase<TDomain>
+		where TDomain : IIdentifiable<Guid?>
 	{
 		private readonly IIdPolicy _idPolicy;
 

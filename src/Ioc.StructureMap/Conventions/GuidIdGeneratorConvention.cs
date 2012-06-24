@@ -8,7 +8,7 @@ using StructureMap.TypeRules;
 
 namespace Guidelines.Ioc.StructureMap.Conventions
 {
-	public class GuidConvention : IRegistrationConvention
+	public class GuidIdGeneratorConvention : IRegistrationConvention
 	{
 		public void Process(Type type, Registry registry)
 		{

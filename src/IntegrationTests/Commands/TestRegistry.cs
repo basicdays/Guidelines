@@ -30,7 +30,7 @@ namespace Guidelines.IntegrationTests.Commands
 				scanner.Convention<CommandPreprocessorConvention>();
 				scanner.Convention<CommitHookConvention>();
 				scanner.Convention<DefaultCrudConvention>();
-				scanner.Convention<GuidConvention>();
+				scanner.Convention<GuidIdGeneratorConvention>();
 				scanner.Convention<CommandProcessorConvention>();
 				scanner.AddAllTypesOf<Profile>();
 				scanner.ConnectImplementationsToTypesClosing(typeof (ICommandPermision<,>));

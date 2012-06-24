@@ -35,7 +35,7 @@ namespace Guidelines.Core
 		}
 
 		public TEntity SetId<TEntity>(TEntity entity)
-			where TEntity : EntityBase<TEntity>
+			where TEntity : IIdentifiable<Guid?>
 		{
 			entity.Id = GetId();
 			return entity;

@@ -7,6 +7,6 @@ namespace Guidelines.Core
 		Guid GetId();
 
 		TEntity SetId<TEntity>(TEntity entity)
-			where TEntity : EntityBase<TEntity>;
+			where TEntity : IIdentifiable<Guid?>;
 	}
 }

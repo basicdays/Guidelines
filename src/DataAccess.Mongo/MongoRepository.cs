@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Guidelines.Core;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -7,13 +6,6 @@ using MongoDB.Driver.Builders;
 
 namespace Guidelines.DataAccess.Mongo
 {
-	public class MongoRepository<TDomain> : MongoRepository<TDomain, Guid?>
-		where TDomain : EntityBase<TDomain>
-	{
-		public MongoRepository(IMongoCollectionProvider<TDomain> collectionProvider) 
-			: base(collectionProvider) {}
-	}
-
 	public class MongoRepository<TDomain, TId> : IRepository<TDomain, TId>
 		where TDomain : IIdentifiable<TId>
 	{
