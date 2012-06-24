@@ -98,6 +98,10 @@
       <Project>{94581DDA-9B41-481A-8BF5-049B50C11A5D}</Project>
       <Name>Ioc.StructureMap</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Logging.Log4Net\Logging.Log4Net.csproj">
+      <Project>{C3153F6B-E737-4C5D-85CF-B7A91FBD29AE}</Project>
+      <Name>Logging.Log4Net</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Mapping.AutoMapper\Mapping.AutoMapper.csproj">
       <Project>{334D4A72-D3A8-441D-BE43-6F144C02EC78}</Project>
       <Name>Mapping.AutoMapper</Name>

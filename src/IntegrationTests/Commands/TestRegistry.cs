@@ -3,8 +3,8 @@ using Guidelines.Core;
 using Guidelines.Core.Commands;
 using Guidelines.Core.Validation;
 using Guidelines.Ioc.StructureMap.Conventions;
+using Guidelines.Logging.Log4Net;
 using Guidelines.WebUI;
-using log4net;
 using StructureMap.Configuration.DSL;
 
 namespace Guidelines.IntegrationTests.Commands
@@ -13,7 +13,6 @@ namespace Guidelines.IntegrationTests.Commands
 	{
 		public TestRegistry()
 		{
-			For<ILog>().Use(context => LogManager.GetLogger(context.ParentType ?? typeof(TestRegistry)));
 			For<IValidationEngine>().Use<DataAnnotationsEngine>();
 			For<IIdPolicy>().Use<CombGuidIdPolicy>();
 
@@ -22,6 +21,7 @@ namespace Guidelines.IntegrationTests.Commands
 
 			For<ILocalizationProvider>().Use<LocalizationProvider>();
 			For<ICommandMessageProcessor>().Use<CommandMessageProcessor>();
+			For<ILogger>().Use(context => LogManager.GetLogger(context.ParentType ?? typeof (TestRegistry)));
 
 			Scan(scanner =>
 			{

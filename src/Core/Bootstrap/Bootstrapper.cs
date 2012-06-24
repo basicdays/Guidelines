@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
-using log4net;
 
 namespace Guidelines.Core.Bootstrap
 {
@@ -19,7 +17,7 @@ namespace Guidelines.Core.Bootstrap
 	/// </remarks>
 	public class Bootstrapper : IBootstrapper
 	{
-		private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+		private readonly ILogger _logger;
 		private readonly IDependencyRegistrar _dependencyRegistrar;
 
 		protected static readonly object Padlock = new object();
@@ -34,9 +32,10 @@ namespace Guidelines.Core.Bootstrap
 		//Review: Because we have required dependencies being loaded via extension methods, we are allowing the creating of invalid bostrappers
 		//guarantied to fail.  While I know the extensions look pretty, they are dangerous.  They really should only be for optional configuration
 		//items that you can use to add in or modify things.  They should not be used to supply required components for function.
-		public Bootstrapper(IDependencyRegistrar dependencyRegistrar)
+		public Bootstrapper(IDependencyRegistrar dependencyRegistrar, ILogger logger)
 		{
 			DisposableTasks = new List<IDisposable>();
+			_logger = logger;
 			_dependencyRegistrar = dependencyRegistrar;
 		}
 
@@ -55,14 +54,16 @@ namespace Guidelines.Core.Bootstrap
 					return this;
 				}
 
-				var stopwatch = new Stopwatch();
-				Log.Info("Bootstrapping");
+				LogPortal.SetLogger(_logger);
 
-				Log.Debug("Running DependencyTask");
+				var stopwatch = new Stopwatch();
+				_logger.Info("Bootstrapping");
+
+				_logger.Debug("Running DependencyTask");
 				stopwatch.Start();
 				_dependencyRegistrar.ConfigureDependencies();
 				stopwatch.Stop();
-				Log.DebugFormat("Completed DependencyTask in {0}ms", stopwatch.ElapsedMilliseconds);
+				_logger.DebugFormat("Completed DependencyTask in {0}ms", stopwatch.ElapsedMilliseconds);
 				stopwatch.Reset();
 
 				var startupTasks = _dependencyRegistrar.ResolveStartupTasks().OrderBy(task => task.Order).ToList();
@@ -73,7 +74,7 @@ namespace Guidelines.Core.Bootstrap
 						continue;
 					}
 
-					Log.Debug("Running " + type.Name);
+					_logger.Debug("Running " + type.Name);
 					stopwatch.Start();
 
 					try
@@ -82,12 +83,12 @@ namespace Guidelines.Core.Bootstrap
 					}
 					catch (Exception e)
 					{
-						Log.Error("Bootstrapping Failed", e);
+						_logger.Error("Bootstrapping Failed", e);
 						throw;
 					}
 
 					stopwatch.Stop();
-					Log.DebugFormat("Completed {0} in {1}ms", type.Name, stopwatch.ElapsedMilliseconds);
+					_logger.DebugFormat("Completed {0} in {1}ms", type.Name, stopwatch.ElapsedMilliseconds);
 					stopwatch.Reset();
 
 					if (typeof(IDisposable).IsAssignableFrom(type)) {
@@ -95,7 +96,7 @@ namespace Guidelines.Core.Bootstrap
 					}
 				}
 
-				Log.Debug("Bootstrapping Completed");
+				_logger.Debug("Bootstrapping Completed");
 				Bootstrapped = true;
 			}
 			return this;

@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -94,6 +91,7 @@
     <Compile Include="GuidIdGenerator.cs" />
     <Compile Include="IIdentifiable.cs" />
     <Compile Include="IIdGenerator.cs" />
+    <Compile Include="ILogger.cs" />
     <Compile Include="IPermision.cs" />
     <Compile Include="Commands\IPostCommitCommandRegistrar.cs" />
     <Compile Include="Commands\IQueryHandler.cs" />
@@ -118,6 +116,7 @@
     <Compile Include="ITextSerializer.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="LocalizedDateConverter.cs" />
+    <Compile Include="LogPortal.cs" />
     <Compile Include="NotPartOfSignatureAttribute.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -162,7 +161,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Domain.nuspec" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

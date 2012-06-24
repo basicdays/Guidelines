@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Reflection;
 using System.Threading;
-using log4net;
 
 namespace Guidelines.Core.Threading
 {
     public class ThreadLauncher
     {
-        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
         public static Thread Launch(Action handler, bool wait = false)
         {
             return Launch(a => handler(), 1, wait);
@@ -35,10 +31,7 @@ namespace Guidelines.Core.Threading
             }
             catch (Exception ex)
             {
-                lock (Log)
-                {
-                    Log.Error(ex.Message, ex);
-                }
+				LogPortal.Error(ex.Message, ex);
             }
         }
     }

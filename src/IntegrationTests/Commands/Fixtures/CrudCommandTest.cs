@@ -1,6 +1,6 @@
-﻿using System;
-using Guidelines.Core;
+﻿using Guidelines.Core;
 using Guidelines.Ioc.StructureMap.Bootstrap;
+using Guidelines.Logging.Log4Net;
 using NUnit.Framework;
 using StructureMap;
 
@@ -20,6 +20,7 @@ namespace Guidelines.IntegrationTests.Commands.Fixtures
 			Bootstrapper = new Bootstrap()
 				.WithContainer(Container)
 				.WithRegistrar(new StructuremapRegistrar())
+				.WithLogger(new Logger<CrudCommandTest>())
 				.Start();
 			Repository = Container.GetInstance<MemoryRepository<TestEntity>>();
 

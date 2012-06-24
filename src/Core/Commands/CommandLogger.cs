@@ -1,13 +1,11 @@
-﻿using log4net;
-
-namespace Guidelines.Core.Commands
+﻿namespace Guidelines.Core.Commands
 {
     public class CommandLogger : ICommandPreprocessor
     {
-        private readonly ILog _logger;
+		private readonly ILogger _logger;
         private readonly ITextSerializer _serializer;
 
-        public CommandLogger(ILog logger, ITextSerializer serializer)
+		public CommandLogger(ILogger logger, ITextSerializer serializer)
         {
             _logger = logger;
             _serializer = serializer;

@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Threading;
-using log4net;
 
 namespace Guidelines.Core.Threading
 {
     public class ProducerConsumerQueue
     {
-        private readonly ILog _logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
         private readonly object _locker = new object();
         private readonly Thread[] _workers;
         private readonly Queue<Action> _itemQ = new Queue<Action>();
 
-        public ProducerConsumerQueue(int workerCount)
+    	private readonly ILogger _logger;
+
+		public ProducerConsumerQueue(int workerCount) 
+			: this(workerCount, null)
+		{ }
+
+        public ProducerConsumerQueue(int workerCount, ILogger logger)
         {
             _workers = new Thread[workerCount];
 
@@ -23,6 +25,8 @@ namespace Guidelines.Core.Threading
             {
                 (_workers[i] = new Thread(Consume)).Start();
             }
+
+        	_logger = logger;
         }
 
         public void Shutdown(bool waitForWorkers)
@@ -77,7 +81,9 @@ namespace Guidelines.Core.Threading
                 }
                 catch (Exception e)
                 {
-                    _logger.Error("Error Processing thread", e);
+					if(_logger != null) {
+						_logger.Error("Error Processing thread", e);
+					}
                 }
             }
         }

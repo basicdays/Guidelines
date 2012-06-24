@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Guidelines.Core;
 using StructureMap;
 using StructureMap.Configuration.DSL;
 
@@ -18,6 +19,13 @@ namespace Guidelines.Ioc.StructureMap.Bootstrap
 		public static Bootstrap WithRegistrar(this Bootstrap bootstrapper, IStructuremapRegistrar registrar)
 		{
 			bootstrapper.StructuremapRegistrar = registrar;
+			return bootstrapper;
+			}
+
+		//Bad - non-guarantied required dependency
+		public static Bootstrap WithLogger(this Bootstrap bootstrapper, ILogger logger)
+		{
+			bootstrapper.Logger = logger;
 			return bootstrapper;
 		}
 

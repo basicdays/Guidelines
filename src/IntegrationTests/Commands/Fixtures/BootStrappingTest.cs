@@ -1,4 +1,5 @@
 ﻿using Guidelines.Ioc.StructureMap.Bootstrap;
+using Guidelines.Logging.Log4Net;
 using NUnit.Framework;
 using StructureMap;
 
@@ -27,11 +28,13 @@ namespace Guidelines.IntegrationTests.Commands.Fixtures
 			//arrange
 			var container = new Container();
 			var registrar = new StructuremapRegistrar();
+			var logger = new Logger<BootStrappingTest>();
 
 			//act
 			var bootstrapper = new Bootstrap()
 				.WithContainer(container)
 				.WithRegistrar(registrar)
+				.WithLogger(logger)
 				.Start();
 
 			bootstrapper.Dispose();

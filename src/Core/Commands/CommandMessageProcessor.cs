@@ -5,18 +5,17 @@ using System.Linq;
 using System.Reflection;
 using System.Security;
 using Guidelines.Core.Validation;
-using log4net;
 
 namespace Guidelines.Core.Commands
 {
 	public class CommandMessageProcessor : ICommandMessageProcessor
 	{
 		private readonly IUnitOfWork _unitOfWork;
-		private readonly ILog _logger;
+		private readonly ILogger _logger;
 		private readonly IEnumerable<ICommandPreprocessor> _commandPreporcesors;
 		private readonly IEnumerable<ICommitHook> _commitHooks;
 
-		public CommandMessageProcessor(IUnitOfWork unitOfWork, ILog logger, IEnumerable<ICommandPreprocessor> commandPreporcesors, IEnumerable<ICommitHook> commitHooks)
+		public CommandMessageProcessor(IUnitOfWork unitOfWork, ILogger logger, IEnumerable<ICommandPreprocessor> commandPreporcesors, IEnumerable<ICommitHook> commitHooks)
 		{
 			_unitOfWork = unitOfWork;
 			_commandPreporcesors = commandPreporcesors;

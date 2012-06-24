@@ -142,9 +142,9 @@ namespace Guidelines.WebUI.Controllers
 			return new DownloadResult(filePath, fileName);
 		}
 
-		protected ImageResult Image(string filePath, int maxWidth = 500, int maxHeight = 500)
-		{
-			return new ImageResult(filePath, maxWidth, maxHeight);
-		}
+		//protected ImageResult Image(string filePath, int maxWidth = 500, int maxHeight = 500)
+		//{
+		//    return new ImageResult(filePath, maxWidth, maxHeight);
+		//}
 	}
 }
