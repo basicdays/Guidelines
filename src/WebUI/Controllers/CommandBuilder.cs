@@ -6,114 +6,135 @@ using Guidelines.WebUI.Errors;
 
 namespace Guidelines.WebUI.Controllers
 {
-	public class CommandBuilder
-	{
-		public CommandBuilder<TInputModel> Handle<TInputModel>()
-		{
-			return new CommandBuilder<TInputModel>();
-		}
-	}
+    public class CommandBuilder
+    {
+        public CommandBuilder<TInputModel> Handle<TInputModel>()
+        {
+            return new CommandBuilder<TInputModel>();
+        }
+    }
 
-	public class CommandBuilder<TInputModel>
-	{
-		public CommandBuilderStageTwo<TInputModel> OnSuccesExecuteResult(Func<ActionResult> onSuccess)
-		{
-			return new CommandBuilderStageTwo<TInputModel>(onSuccess);
-		}
+    public class CommandBuilder<TInputModel>
+    {
+        public CommandBuilderStageTwo<TInputModel> OnSuccesBuildResultWith(Func<ActionResult> onSuccess)
+        {
+            return new CommandBuilderStageTwo<TInputModel>(onSuccess);
+        }
 
-		public CommandBuilderStageTwo<TInputModel> OnSuccesExecuteResult(ActionResult actionResult)
-		{
-			return new CommandBuilderStageTwo<TInputModel>(() => actionResult);
-		}
-	}
+        public CommandBuilderStageTwo<TInputModel> OnSuccesUseResult(ActionResult actionResult)
+        {
+            return new CommandBuilderStageTwo<TInputModel>(() => actionResult);
+        }
+    }
 
-	public class CommandBuilderStageTwo<TInputModel>
-	{
-		private readonly Func<ActionResult> _success;
+    public class CommandBuilderStageTwo<TInputModel>
+    {
+        public class MappedCommandBuilderStageTwo<TMapTo>
+        {
+            private readonly Func<ActionResult> _mappedSuccess;
 
-		public CommandBuilderStageTwo(Func<ActionResult> success)
-		{
-			_success = success;
-		}
+            public MappedCommandBuilderStageTwo(Func<ActionResult> success)
+            {
+                _mappedSuccess = success;
+            }
 
-		public CommandBuilderStageThree<TInputModel> UseSuccessPathOnFailure()
-		{
-			return new CommandBuilderStageThree<TInputModel>(_success,
-				(input, mapper, error) => _success());
-		}
+            public CommandBuilderStageThree<TInputModel> OnFailureBuildResultWith(Func<TMapTo, ActionResult> onFailure)
+            {
+                return new CommandBuilderStageThree<TInputModel>(_mappedSuccess,
+                    (input, mapper, error) => onFailure(mapper.Map<TInputModel, TMapTo>(input)));
+            }
+        }
 
-		public CommandBuilderStageThree<TInputModel> OnFailureExecuteResult<TMapFrom>(Func<TMapFrom, ActionResult> onFailure)
-		{
-			return new CommandBuilderStageThree<TInputModel>(_success,
-				(input, mapper, error) => onFailure(mapper.Map<TInputModel, TMapFrom>(input)));
-		}
+        private readonly Func<ActionResult> _success;
 
-		public CommandBuilderStageThree<TInputModel> OnFailureExecuteResult(Func<TInputModel, ActionResult> onFailure)
-		{
-			return new CommandBuilderStageThree<TInputModel>(_success,
-				(input, mapper, error) => onFailure(input));
-		}
+        public CommandBuilderStageTwo(Func<ActionResult> success)
+        {
+            _success = success;
+        }
 
-		public CommandBuilderStageThree<TInputModel> OnFailureHandleError(Func<ErrorContext, ActionResult> onFailure)
-		{
-			return new CommandBuilderStageThree<TInputModel>(_success,
-				(input, mapper, error) => onFailure(error));
-		}
+        public CommandBuilderStageThree<TInputModel> UseSuccessPathOnFailure()
+        {
+            return new CommandBuilderStageThree<TInputModel>(_success,
+                (input, mapper, error) => _success());
+        }
 
-		public CommandBuilderStageThree<TInputModel> OnFailureExecuteResult(Func<ActionResult> onFailure)
-		{
-			return new CommandBuilderStageThree<TInputModel>(_success,
-				(input, mapper, error) => onFailure());
-		}
+        public MappedCommandBuilderStageTwo<TMappedResult> MapFailedInputTo<TMappedResult>()
+        {
+            return new MappedCommandBuilderStageTwo<TMappedResult>(_success);
+        }
 
-		public CommandBuilderStageThree<TInputModel> OnFailureExecuteResult(ActionResult actionResult)
-		{
-			return new CommandBuilderStageThree<TInputModel>(_success,
-				(input, mapper, error) => actionResult);
-		}
-	}
+        public CommandBuilderStageThree<TInputModel> OnFailureBuildMappedResultWith<TMapFrom>(Func<TMapFrom, ActionResult> onFailure)
+        {
+            return new CommandBuilderStageThree<TInputModel>(_success,
+                (input, mapper, error) => onFailure(mapper.Map<TInputModel, TMapFrom>(input)));
+        }
 
-	public class CommandBuilderStageThree<TInputModel>
-	{
-		private Func<IGenericMapper, TInputModel> _message;
-		private readonly Func<ActionResult> _success;
-		private readonly Func<TInputModel, IGenericMapper, ErrorContext, ActionResult> _failure;
+        public CommandBuilderStageThree<TInputModel> OnFailureBuildResultWith(Func<TInputModel, ActionResult> onFailure)
+        {
+            return new CommandBuilderStageThree<TInputModel>(_success,
+            (input, mapper, error) => onFailure(input));
+        }
 
-		public CommandBuilderStageThree(Func<ActionResult> success, Func<TInputModel, IGenericMapper, ErrorContext, ActionResult> failure)
-		{
-			_success = success;
-			_failure = failure;
-		}
+        public CommandBuilderStageThree<TInputModel> OnFailureHandleError(Func<ErrorContext, ActionResult> onFailure)
+        {
+            return new CommandBuilderStageThree<TInputModel>(_success,
+            (input, mapper, error) => onFailure(error));
+        }
 
-		private CommandBuilderStageThree<TInputModel> WithMessage(TInputModel command)
-		{
-			_message = mapper => command;
-			return this;
-		}
+        public CommandBuilderStageThree<TInputModel> OnFailureUseResultFrom(Func<ActionResult> onFailure)
+        {
+            return new CommandBuilderStageThree<TInputModel>(_success,
+            (input, mapper, error) => onFailure());
+        }
 
-		private CommandBuilderStageThree<TInputModel> WithMessage<TMapFrom>(TMapFrom message)
-		{
-			_message = mapper => mapper.Map<TMapFrom, TInputModel>(message);
-			return this;
-		}
+        public CommandBuilderStageThree<TInputModel> OnFailureExecuteResult(ActionResult actionResult)
+        {
+            return new CommandBuilderStageThree<TInputModel>(_success,
+            (input, mapper, error) => actionResult);
+        }
+    }
 
-		#region Command Execution
+    public class CommandBuilderStageThree<TInputModel>
+    {
+        private Func<IGenericMapper, TInputModel> _message;
+        private readonly Func<ActionResult> _success;
+        private readonly Func<TInputModel, IGenericMapper, ErrorContext, ActionResult> _failure;
 
-		private CommandResult<TInputModel> Run()
-		{
-			return new CommandResult<TInputModel>(_message, _success, _failure);
-		}
+        public CommandBuilderStageThree(Func<ActionResult> success, Func<TInputModel, IGenericMapper, ErrorContext, ActionResult> failure)
+        {
+            _success = success;
+            _failure = failure;
+        }
 
-		public CommandResult<TInputModel> ExecuteWith(TInputModel command)
-		{
-			return WithMessage(command).Run();
-		}
+        private CommandBuilderStageThree<TInputModel> WithMessage(TInputModel command)
+        {
+            _message = mapper => command;
+            return this;
+        }
 
-		public CommandResult<TInputModel> ExecuteWith<TMapFrom>(TMapFrom message)
-		{
-			return WithMessage(message).Run();
-		}
+        private CommandBuilderStageThree<TInputModel> WithMessage<TMapFrom>(TMapFrom message)
+        {
+            _message = mapper => mapper.Map<TMapFrom, TInputModel>(message);
+            return this;
+        }
 
-		#endregion
-	}
+        #region Command Execution
+
+        private CommandResult<TInputModel> Run()
+        {
+            return new CommandResult<TInputModel>(_message, _success, _failure);
+        }
+
+        public CommandResult<TInputModel> ExecuteWith(TInputModel command)
+        {
+            return WithMessage(command).Run();
+        }
+
+        public CommandResult<TInputModel> ExecuteWith<TMapFrom>(TMapFrom message)
+        {
+            return WithMessage(message).Run();
+        }
+
+        #endregion
+    }
 }
