@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="BaseCollectionProvider.cs" />
     <Compile Include="GuidMongoRepository.cs" />
-    <Compile Include="Helpers\TextSerializer.cs" />
+    <Compile Include="Helpers\CommandLogger.cs" />
     <Compile Include="IMongoClassMap.cs" />
     <Compile Include="IMongoCollectionProvider.cs" />
     <Compile Include="IConnectionStringProvider.cs" />

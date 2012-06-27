@@ -1,4 +1,6 @@
-﻿namespace Guidelines.Core.Commands
+﻿using System;
+
+namespace Guidelines.Core.Commands
 {
 	public interface ICommandPermision<in TCommand, in TDomain>
 	{
