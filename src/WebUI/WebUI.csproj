@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionInvokers\ActionMethodResultInvokerFacade.cs" />
+    <Compile Include="ActionInvokers\CommandActionInvoker.cs" />
     <Compile Include="ActionInvokers\CommandControllerActivator.cs" />
     <Compile Include="ActionInvokers\CommandResultProcessor.cs" />
     <Compile Include="ActionInvokers\IActionMethodResult.cs" />
@@ -58,12 +59,13 @@
     <Compile Include="ActionInvokers\ResultInvoker.cs" />
     <Compile Include="ActionResults\CommandResult.cs" />
     <Compile Include="ActionResults\DownloadResult.cs" />
-    <Compile Include="ActionResults\ImageResult.cs" />
     <Compile Include="ActionResults\LargeJsonResult.cs" />
     <Compile Include="ActionResults\QueryResult.cs" />
     <Compile Include="Controllers\BundleController.cs" />
+    <Compile Include="Controllers\CommandBuilder.cs" />
     <Compile Include="Controllers\CommandController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\QueryBuilder.cs" />
     <Compile Include="Errors\ErrorAspect.cs" />
     <Compile Include="Errors\ErrorContext.cs" />
     <Compile Include="Errors\IErrorAspect.cs" />

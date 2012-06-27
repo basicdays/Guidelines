@@ -10,7 +10,7 @@
 		<copyright>Copyright 2012</copyright>
 
 		<dependencies>
-			<dependency id="Guidelines.Domain"/>
+			<dependency id="Guidelines.Core"/>
 		</dependencies>
 	</metadata>
 </package>

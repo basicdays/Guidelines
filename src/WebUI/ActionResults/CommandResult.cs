@@ -8,8 +8,8 @@ namespace Guidelines.WebUI.ActionResults
 {
 	public class CommandResult<TInput> : CommandResult
 	{
-		private readonly Func<ActionResult> _success;
-		private readonly Func<TInput, IGenericMapper, ErrorContext, ActionResult> _failure;
+		private Func<ActionResult> _success;
+		private Func<TInput, IGenericMapper, ErrorContext, ActionResult> _failure;
 		private TInput _message;
 
 		public Func<IGenericMapper, TInput> MessageGetter { get; private set; }

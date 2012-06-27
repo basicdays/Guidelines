@@ -142,9 +142,29 @@ namespace Guidelines.WebUI.Controllers
 			return new DownloadResult(filePath, fileName);
 		}
 
-		//protected ImageResult Image(string filePath, int maxWidth = 500, int maxHeight = 500)
-		//{
-		//    return new ImageResult(filePath, maxWidth, maxHeight);
-		//}
+		protected CommandBuilder<TInput> Command<TInput>()
+		{
+			return new CommandBuilder<TInput>();
+		}
+
+		protected CommandBuilder Command()
+		{
+			return new CommandBuilder();
+		}
+
+		protected QueryBuilder<TInput, TResult> Query<TInput, TResult>()
+		{
+			return new QueryBuilder<TInput, TResult>();
+		}
+
+		protected QueryBuilder Query()
+		{
+			return new QueryBuilder();
+		}
+
+		protected ActionResult ErrorView(ErrorContext error)
+		{
+			return View("Error", error);
+		}
 	}
 }
