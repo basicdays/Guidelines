@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionInvokers\ActionMethodResultInvokerFacade.cs" />
+    <Compile Include="ActionInvokers\CommandActionInvoker.cs" />
     <Compile Include="ActionInvokers\CommandControllerActivator.cs" />
     <Compile Include="ActionInvokers\CommandResultProcessor.cs" />
     <Compile Include="ActionInvokers\IActionMethodResult.cs" />

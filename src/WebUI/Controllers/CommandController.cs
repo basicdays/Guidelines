@@ -142,24 +142,29 @@ namespace Guidelines.WebUI.Controllers
 			return new DownloadResult(filePath, fileName);
 		}
 
-		public CommandBuilder<TInput> Command<TInput>()
+		protected CommandBuilder<TInput> Command<TInput>()
 		{
 			return new CommandBuilder<TInput>();
 		}
 
-		public CommandBuilder Command()
+		protected CommandBuilder Command()
 		{
 			return new CommandBuilder();
 		}
 
-		public QueryBuilder<TInput, TResult> Query<TInput, TResult>()
+		protected QueryBuilder<TInput, TResult> Query<TInput, TResult>()
 		{
 			return new QueryBuilder<TInput, TResult>();
 		}
 
-		public QueryBuilder Query()
+		protected QueryBuilder Query()
 		{
 			return new QueryBuilder();
+		}
+
+		protected ActionResult ErrorView(ErrorContext error)
+		{
+			return View("Error", error);
 		}
 	}
 }

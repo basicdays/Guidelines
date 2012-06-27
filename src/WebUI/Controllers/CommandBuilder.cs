@@ -16,12 +16,12 @@ namespace Guidelines.WebUI.Controllers
 
     public class CommandBuilder<TInputModel>
     {
-        public CommandBuilderStageTwo<TInputModel> OnSuccesBuildResultWith(Func<ActionResult> onSuccess)
+        public CommandBuilderStageTwo<TInputModel> OnSuccessBuildResultWith(Func<ActionResult> onSuccess)
         {
             return new CommandBuilderStageTwo<TInputModel>(onSuccess);
         }
 
-        public CommandBuilderStageTwo<TInputModel> OnSuccesUseResult(ActionResult actionResult)
+        public CommandBuilderStageTwo<TInputModel> OnSuccessUseResult(ActionResult actionResult)
         {
             return new CommandBuilderStageTwo<TInputModel>(() => actionResult);
         }
@@ -75,7 +75,7 @@ namespace Guidelines.WebUI.Controllers
             (input, mapper, error) => onFailure(input));
         }
 
-        public CommandBuilderStageThree<TInputModel> OnFailureHandleError(Func<ErrorContext, ActionResult> onFailure)
+		public CommandBuilderStageThree<TInputModel> OnFailureHandleErrorWith(Func<ErrorContext, ActionResult> onFailure)
         {
             return new CommandBuilderStageThree<TInputModel>(_success,
             (input, mapper, error) => onFailure(error));

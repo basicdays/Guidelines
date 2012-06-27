@@ -68,7 +68,7 @@
     <Compile Include="TypeMappingLoader.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Mapping.nuspec" />
+    <None Include="Mapping.AutoMapper.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

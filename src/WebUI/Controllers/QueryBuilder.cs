@@ -26,7 +26,7 @@ namespace Guidelines.WebUI.Controllers
     {
         public class MappedQueryBuilder<TMapTo>
         {
-            public QueryBuilderStageTwo<TInputModel, TResult> OnSuccesBuildResultWith(Func<TMapTo, ActionResult> onSuccess)
+            public QueryBuilderStageTwo<TInputModel, TResult> OnSuccessBuildResultWith(Func<TMapTo, ActionResult> onSuccess)
             {
                 return new QueryBuilderStageTwo<TInputModel, TResult>((result, mapper) => onSuccess(mapper.Map<TResult, TMapTo>(result)));
             }
@@ -37,22 +37,22 @@ namespace Guidelines.WebUI.Controllers
             return new MappedQueryBuilder<TMappedResult>();
         }
 
-        public QueryBuilderStageTwo<TInputModel, TResult> OnSuccesBuildResultWith(Func<TResult, IGenericMapper, ActionResult> onSuccess)
+        public QueryBuilderStageTwo<TInputModel, TResult> OnSuccessBuildResultWith(Func<TResult, IGenericMapper, ActionResult> onSuccess)
         {
             return new QueryBuilderStageTwo<TInputModel, TResult>(onSuccess);
         }
 
-        public QueryBuilderStageTwo<TInputModel, TResult> OnSuccesBuildResultWith(Func<TResult, ActionResult> onSuccess)
+        public QueryBuilderStageTwo<TInputModel, TResult> OnSuccessBuildResultWith(Func<TResult, ActionResult> onSuccess)
         {
             return new QueryBuilderStageTwo<TInputModel, TResult>((result, mapper) => onSuccess(result));
         }
 
-        public QueryBuilderStageTwo<TInputModel, TResult> OnSuccesBuildMappedResultWith<TMappedResult>(Func<TMappedResult, ActionResult> onSuccess)
+        public QueryBuilderStageTwo<TInputModel, TResult> OnSuccessBuildMappedResultWith<TMappedResult>(Func<TMappedResult, ActionResult> onSuccess)
         {
             return new QueryBuilderStageTwo<TInputModel, TResult>((result, mapper) => onSuccess(mapper.Map<TResult, TMappedResult>(result)));
         }
 
-        public QueryBuilderStageTwo<TInputModel, TResult> OnSuccesUseResultFrom(Func<ActionResult> onSuccess)
+        public QueryBuilderStageTwo<TInputModel, TResult> OnSuccessUseResultFrom(Func<ActionResult> onSuccess)
         {
             return new QueryBuilderStageTwo<TInputModel, TResult>((result, mapper) => onSuccess());
         }
@@ -105,7 +105,7 @@ namespace Guidelines.WebUI.Controllers
                 (input, mapper, error) => onFailure(input));
         }
 
-        public QueryBuilderStageThree<TInputModel, TResult> OnFailureHandleError(Func<ErrorContext, ActionResult> onFailure)
+        public QueryBuilderStageThree<TInputModel, TResult> OnFailureHandleErrorWith(Func<ErrorContext, ActionResult> onFailure)
         {
             return new QueryBuilderStageThree<TInputModel, TResult>(_success,
                 (input, mapper, error) => onFailure(error));

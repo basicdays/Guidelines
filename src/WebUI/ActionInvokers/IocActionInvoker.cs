@@ -1,15 +1,14 @@
 ﻿using System.Web.Mvc;
-using Microsoft.Practices.ServiceLocation;
 
 namespace Guidelines.WebUI.ActionInvokers
 {
 	public class IocActionInvoker : ControllerActionInvoker
 	{
-		private readonly IServiceLocator _container;
+		private readonly ICommandActionInvoker _actionInvoker;
 
-		public IocActionInvoker(IServiceLocator container)
+		public IocActionInvoker(ICommandActionInvoker actionInvoker)
 		{
-			_container = container;
+			_actionInvoker = actionInvoker;
 		}
 
 		protected override ActionResult CreateActionResult(
@@ -19,13 +18,7 @@ namespace Guidelines.WebUI.ActionInvokers
 		{
 			if (actionReturnValue is IActionMethodResult)
 			{
-				var openWrappedType = typeof(ActionMethodResultInvokerFacade<>);
-				var actionMethodResultType = actionReturnValue.GetType();
-				var wrappedResultType = openWrappedType.MakeGenericType(actionMethodResultType);
-
-				var invokerFacade = (IActionMethodResultInvoker)_container.GetInstance(wrappedResultType);
-
-				actionReturnValue = invokerFacade.Invoke(actionReturnValue, controllerContext);
+				actionReturnValue = _actionInvoker.Invoke(actionReturnValue as IActionMethodResult, controllerContext);
 			}
 			return base.CreateActionResult(controllerContext, actionDescriptor, actionReturnValue);
 		}
