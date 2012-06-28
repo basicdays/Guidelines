@@ -10,6 +10,10 @@ namespace Guidelines.WebUI.Controllers
 	[AspectRegistrarFilter]
 	public class CommandController : Controller
 	{
+		#region Query Shortcuts
+
+		#region General Query Shortcuts
+
 		public QueryResult<TMessage, TResult> Query<TMessage, TResult>(Func<IGenericMapper, TMessage> message, Func<TResult, IGenericMapper, ActionResult> success, Func<TMessage, IGenericMapper, ActionResult> failure)
 		{
 			return new QueryResult<TMessage, TResult>(message, success, failure);
@@ -60,6 +64,10 @@ namespace Guidelines.WebUI.Controllers
 			return new QueryResult<TMessage, TMessage>(message, result, result);
 		}
 
+		#endregion
+
+		#region Mapped Query Shortcuts
+
 		public QueryResult<TMessage, TResult> MappedQuery<TMessage, TResult, TModel>(TMessage message, Func<TModel, ActionResult> success, Func<TMessage, ErrorContext, ActionResult> failure)
 		{
 			return new QueryResult<TMessage, TResult>(message,
@@ -89,6 +97,10 @@ namespace Guidelines.WebUI.Controllers
 				f => failure(message));
 		}
 
+		#endregion
+
+		#region Json Query Shortcuts
+
 		public QueryResult<TMessage, TResult> JsonQuery<TMessage, TResult>(TMessage message, Func<TResult, ActionResult> success)
 		{
 			return new QueryResult<TMessage, TResult>(message, success,
@@ -98,7 +110,7 @@ namespace Guidelines.WebUI.Controllers
 		public QueryResult<TMessage, TResult> MappedJsonQuery<TMessage, TResult, TModel>(TMessage message)
 		{
 			return new QueryResult<TMessage, TResult>(message,
-				(result, mapper) => LargeJson(mapper.Map<TResult, TModel>(result)),
+				(result, mapper) => DynamicView(mapper.Map<TResult, TModel>(result)),
 				(input, mapper, error) => Json(error)) { NoErrorState = true };
 		}
 
@@ -106,9 +118,15 @@ namespace Guidelines.WebUI.Controllers
 		{
 			return new QueryResult<TMessage, TResult>(
 				mapper => mapper.Map<TModel, TMessage>(message),
-				(result, mapper) => LargeJson(mapper.Map<TResult, TModel>(result)),
+				(result, mapper) => DynamicView(mapper.Map<TResult, TModel>(result)),
 				(input, mapper, error) => Json(error)) { NoErrorState = true };
 		}
+
+		#endregion
+
+		#endregion
+
+		#region Command Shortcuts
 
 		public CommandResult<TInput> Command<TInput>(TInput message, Func<ActionResult> success, Func<TInput, ActionResult> failure)
 		{
@@ -132,14 +150,13 @@ namespace Guidelines.WebUI.Controllers
 			return new CommandResult<TInput>(message, success, fail => success());
 		}
 
-		protected LargeJsonResult LargeJson(object model)
-		{
-			return new LargeJsonResult(model);
-		}
+		#endregion
 
-		protected DownloadResult Download(string filePath, string fileName)
+		#region Command and Query Builders
+
+		protected CommandBuilder Command()
 		{
-			return new DownloadResult(filePath, fileName);
+			return new CommandBuilder();
 		}
 
 		protected CommandBuilder<TInput> Command<TInput>()
@@ -147,9 +164,14 @@ namespace Guidelines.WebUI.Controllers
 			return new CommandBuilder<TInput>();
 		}
 
-		protected CommandBuilder Command()
+		protected QueryBuilder Query()
 		{
-			return new CommandBuilder();
+			return new QueryBuilder();
+		}
+
+		protected QueryBuilder<TInput> Query<TInput>()
+		{
+			return new QueryBuilder<TInput>();
 		}
 
 		protected QueryBuilder<TInput, TResult> Query<TInput, TResult>()
@@ -157,14 +179,26 @@ namespace Guidelines.WebUI.Controllers
 			return new QueryBuilder<TInput, TResult>();
 		}
 
-		protected QueryBuilder Query()
-		{
-			return new QueryBuilder();
-		}
+		#endregion
 
 		protected ActionResult ErrorView(ErrorContext error)
 		{
 			return View("Error", error);
+		}
+
+		protected ActionResult JsonError(ErrorContext error)
+		{
+			return Content(error.ErrorMessage);
+		}
+
+		protected DynamicView DynamicView(object model)
+		{
+			return new DynamicView(model);
+		}
+
+		protected DownloadResult Download(string filePath, string fileName)
+		{
+			return new DownloadResult(filePath, fileName);
 		}
 	}
 }

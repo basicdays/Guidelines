@@ -57,8 +57,10 @@
     <Compile Include="ActionInvokers\IResultProcessor.cs" />
     <Compile Include="ActionInvokers\QueryResultProcessor.cs" />
     <Compile Include="ActionInvokers\ResultInvoker.cs" />
+    <Compile Include="ActionResults\CollectionWrapper.cs" />
     <Compile Include="ActionResults\CommandResult.cs" />
     <Compile Include="ActionResults\DownloadResult.cs" />
+    <Compile Include="ActionResults\DynamicView.cs" />
     <Compile Include="ActionResults\LargeJsonResult.cs" />
     <Compile Include="ActionResults\QueryResult.cs" />
     <Compile Include="Controllers\BundleController.cs" />
