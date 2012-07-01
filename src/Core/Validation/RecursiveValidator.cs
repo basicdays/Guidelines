@@ -43,7 +43,7 @@ namespace Guidelines.Core.Validation
         }
 
         /// <summary>
-        /// Warps validator try validate method with one that will validate all children on the object that are
+        /// Wraps validator try validate method with one that will validate all children on the object that are
         /// in the same assembly as the one being validated.
         /// </summary>
         private bool TryValidateObject<T>(T obj, ValidationContext validationContext, Dictionary<object, bool> validatedObjects)
@@ -61,6 +61,7 @@ namespace Guidelines.Core.Validation
             validatedObjects.Add(obj, result);
 
 			//Get all child properties that have the validate attribute.
+			//review: use an exclusion attribute instead of opt in attribute
 			IEnumerable<PropertyInfo> properties = obj.GetType().GetProperties().Where(prop =>
 				!prop.PropertyType.GetCustomAttributes(typeof(ValidateObjectAttribute), true).IsEmpty()
 			);
@@ -78,7 +79,7 @@ namespace Guidelines.Core.Validation
             IEnumerable<PropertyInfo> enumerables = obj.GetType().GetProperties()
                 .Where(prop => typeof(IEnumerable).IsAssignableFrom(prop.PropertyType));
 
-			//Travers the enumerable and validate any that have validate attribute.
+			//Traverse the enumerable and validate any that have validate attribute.
             foreach (IEnumerable asEnumerable in enumerables
                 .Select(prop => obj.GetPropertyValue(prop.Name))
                 .Where(val => val != null)

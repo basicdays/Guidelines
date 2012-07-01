@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoMapperInfrastructureMarker.cs" />
+    <Compile Include="MappingAutoMapperMarker.cs" />
     <Compile Include="AutoMapperTask.cs" />
     <Compile Include="DefaultMappingsLoaderTask.cs" />
     <Compile Include="Formatters\CurrencyFormatter.cs" />

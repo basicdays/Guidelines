@@ -1,6 +1,6 @@
 ﻿namespace Guidelines.Mapping.AutoMapper
 {
-	public class AutoMapperInfrastructureMarker
+	public class MappingAutoMapperMarker
 	{
 
 	}

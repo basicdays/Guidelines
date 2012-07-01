@@ -42,8 +42,7 @@ namespace Guidelines.Core.Validation
 			if (!valid)
 			{
 				throw new ValidationEngineException(
-					_mapper.Map(validator.Results),
-					Resources.Error_ValidationError);
+					_mapper.Map(validator.Results));
 			}
 		}
 
@@ -67,8 +66,7 @@ namespace Guidelines.Core.Validation
 			if (!valid)
 			{
 				throw new ValidationEngineException(
-					validationErrors,
-					Resources.Error_ValidationError);
+					validationErrors);
 			}
 		}
 	}

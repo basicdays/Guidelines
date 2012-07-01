@@ -29,7 +29,7 @@ namespace Guidelines.IntegrationTests.Commands
 			For(typeof(IMapper<,>)).Use(typeof(Mapper<,>));
 
 			Scan(scanner => {
-				scanner.AssemblyContainingType<AutoMapperInfrastructureMarker>();
+				scanner.AssemblyContainingType<MappingAutoMapperMarker>();
 				scanner.WithDefaultConventions();
 				scanner.AddAllTypesOf<Profile>();
 				scanner.AddAllTypesOf<IBootstrapTask>();

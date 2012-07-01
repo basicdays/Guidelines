@@ -103,7 +103,7 @@
     <Compile Include="Commands\QueryResult.cs" />
     <Compile Include="Commands\TypedCommandPreprocessorFacade.cs" />
     <Compile Include="Commands\TypedCommitHookFacade.cs" />
-    <Compile Include="DomainInfrastructureMarker.cs" />
+    <Compile Include="CoreMarker.cs" />
     <Compile Include="EntityBase.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="IApplicationServiceProvider.cs" />
