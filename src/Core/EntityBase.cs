@@ -33,7 +33,7 @@ namespace Guidelines.Core
 
 		public virtual bool SignatureEquals(TType other)
 		{
-			return GetHashCode() == other.GetHashCode();
+			return other != null && GetHashCode() == other.GetHashCode();
 		}
 
 		public override int GetHashCode()

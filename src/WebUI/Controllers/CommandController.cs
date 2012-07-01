@@ -181,6 +181,8 @@ namespace Guidelines.WebUI.Controllers
 
 		#endregion
 
+		#region Helper Methods
+
 		protected ActionResult ErrorView(ErrorContext error)
 		{
 			return View("Error", error);
@@ -196,9 +198,16 @@ namespace Guidelines.WebUI.Controllers
 			return new DynamicView(model);
 		}
 
+		protected LargeJsonResult LargeJson(object model)
+		{
+			return new LargeJsonResult(model);
+		}
+
 		protected DownloadResult Download(string filePath, string fileName)
 		{
 			return new DownloadResult(filePath, fileName);
 		}
+
+		#endregion
 	}
 }

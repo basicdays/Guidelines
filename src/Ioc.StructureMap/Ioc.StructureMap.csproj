@@ -67,7 +67,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="IocStructureMap.nuspec" />
+    <None Include="Ioc.StructureMap.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

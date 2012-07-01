@@ -60,11 +60,17 @@ namespace Guidelines.UnitTests.Core
 		}
 
 		[Test]
+		public void ObjectsWithSameValuesAreSignatureEqual()
+		{
+			Assert.That(new SectionA().SignatureEquals(new SectionA()), Is.True);
+		}
+
+		[Test]
 		public void ObjectsWithSameSignatureValuesAndDifferentNonSignatureValuesAreEqual()
 		{
 			var a = new SectionA();
 			var b = new SectionA { Stuff5 = 500 };
-			Assert.That(b, Is.EqualTo(a));
+			Assert.That(b.SignatureEquals(a), Is.True);
 		}
 
 		[Test]
@@ -72,7 +78,7 @@ namespace Guidelines.UnitTests.Core
 		{
 			var a = new SectionA();
 			var b = new SectionA { Stuff3 = 500 };
-			Assert.That(b, Is.EqualTo(a));
+			Assert.That(b.SignatureEquals(a), Is.True);
 		}
 
 		[Test]
@@ -80,7 +86,8 @@ namespace Guidelines.UnitTests.Core
 		{
 			var a = new SectionA();
 			var b = new SectionA { Stuff1 = 500 };
-			Assert.That(b, Is.Not.EqualTo(a));
+
+			Assert.That(b.SignatureEquals(a), Is.False);
 		}
 
 		[Test]
@@ -91,7 +98,8 @@ namespace Guidelines.UnitTests.Core
 			{
 				Stuff4 = new List<SectionB> { new SectionB(500), new SectionB(600) }
 			};
-			Assert.That(b, Is.Not.EqualTo(a));
+
+			Assert.That(b.SignatureEquals(a), Is.False);
 		}
 
 		[Test]
@@ -99,6 +107,13 @@ namespace Guidelines.UnitTests.Core
 		{
 			var a = new SectionA();
 			Assert.That(a, Is.Not.EqualTo(null));
+		}
+
+		[Test]
+		public void NullObjectIsNotSigntatureEqual()
+		{
+			var a = new SectionA();
+			Assert.That(a.SignatureEquals(null), Is.False);
 		}
 	}
 }
