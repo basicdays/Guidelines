@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Guidelines.Core;
 
 namespace Guidelines.IntegrationTests.Commands
@@ -18,6 +19,11 @@ namespace Guidelines.IntegrationTests.Commands
 			_memoryCache.TryGetValue(id, out value);
 
 			return value;
+		}
+
+		public IQueryable<TDomain> GetQueryableSet()
+		{
+			return _memoryCache.Values.AsQueryable();
 		}
 
 		public IEnumerable<TDomain> GetAll()

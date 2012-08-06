@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{73277BCB-AF14-41DB-BAF6-4B95B84874A7}</ProjectGuid>
+    <ProjectGuid>{A3632FEC-4D2C-4C27-9860-57952BF61AF9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Guidelines.DataAccess.Mongo</RootNamespace>
-    <AssemblyName>Guidelines.DataAccess.Mongo</AssemblyName>
+    <RootNamespace>Guidelines.DataAccess.EntityFramework</RootNamespace>
+    <AssemblyName>Guidelines.DataAccess.EntityFramework</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\build\bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -25,22 +25,16 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\build\bin\Release\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MongoDB.Bson, Version=1.5.0.4566, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\mongocsharpdriver.1.5\lib\net35\MongoDB.Bson.dll</HintPath>
-    </Reference>
-    <Reference Include="MongoDB.Driver, Version=1.5.0.4566, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\mongocsharpdriver.1.5\lib\net35\MongoDB.Driver.dll</HintPath>
-    </Reference>
+    <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,30 +42,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseCollectionProvider.cs" />
-    <Compile Include="GuidMongoRepository.cs" />
-    <Compile Include="Helpers\CommandLogger.cs" />
-    <Compile Include="IMongoClassMap.cs" />
-    <Compile Include="IMongoCollectionProvider.cs" />
-    <Compile Include="IConnectionStringProvider.cs" />
-    <Compile Include="IMongoCredentialProvider.cs" />
-    <Compile Include="IMongoDataSource.cs" />
-    <Compile Include="IMongoServerProvider.cs" />
-    <Compile Include="MapReduceContainer.cs" />
-    <Compile Include="MongoClassMap.cs" />
-    <Compile Include="MongoDataAccessMarker.cs" />
-    <Compile Include="MongoDataSource.cs" />
-    <Compile Include="MongoDictionarySerializer.cs" />
-    <Compile Include="MongoDictionaryValue.cs" />
-    <Compile Include="MongoRepository.cs" />
-    <Compile Include="MongoServerProvider.cs" />
-    <Compile Include="ObjectNameCollectionProvider.cs" />
+    <Compile Include="DbContextInitializer.cs" />
+    <Compile Include="EntityFrameworkRepositoryBase.cs" />
+    <Compile Include="GuidEntityFrameworkRepository.cs" />
+    <Compile Include="IDbContext.cs" />
+    <Compile Include="IEntityFrameworkConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWork.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="DataAccess.Mongo.csproj.nuspec" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">

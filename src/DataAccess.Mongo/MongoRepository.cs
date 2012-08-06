@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Guidelines.Core;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
+using MongoDB.Driver.Linq;
 
 namespace Guidelines.DataAccess.Mongo
 {
@@ -21,9 +24,9 @@ namespace Guidelines.DataAccess.Mongo
 			return _collection.FindOneById(BsonValue.Create(id));
 		}
 
-		public IEnumerable<TDomain> GetAll()
+		public IQueryable<TDomain> GetQueryableSet()
 		{
-			return _collection.FindAll();
+			return _collection.AsQueryable();
 		}
 
 		public TDomain Insert(TDomain toInsert)
