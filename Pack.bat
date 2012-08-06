@@ -5,6 +5,7 @@ if exist "build\packages" (
 mkdir "build\packages"
 
 "tools\NuGet" update -self
+"tools\NuGet" pack -symbols -outputDirectory "build\packages" "src\DataAccess.EntityFramework\DataAccess.EntityFramework.csproj"
 "tools\NuGet" pack -symbols -outputDirectory "build\packages" "src\DataAccess.Mongo\DataAccess.Mongo.csproj"
 "tools\NuGet" pack -symbols -outputDirectory "build\packages" "src\Core\Core.csproj"
 "tools\NuGet" pack -symbols -outputDirectory "build\packages" "src\Ioc.StructureMap\Ioc.StructureMap.csproj"
