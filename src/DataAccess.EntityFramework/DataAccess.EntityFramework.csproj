@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbContextInitializer.cs" />
-    <Compile Include="EntityFrameworkRepositoryBase.cs" />
+    <Compile Include="EntityFrameworkRepository.cs" />
     <Compile Include="GuidEntityFrameworkRepository.cs" />
     <Compile Include="IDbContext.cs" />
     <Compile Include="IEntityFrameworkConfiguration.cs" />

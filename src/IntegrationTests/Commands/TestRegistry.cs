@@ -21,7 +21,7 @@ namespace Guidelines.IntegrationTests.Commands
 
 			For<ILocalizationProvider>().Use<LocalizationProvider>();
 			For<ICommandMessageProcessor>().Use<CommandMessageProcessor>();
-			For<ILogger>().Use(context => LogManager.GetLogger(context.ParentType ?? typeof (TestRegistry)));
+			For<ILogger>().Use(context => LogManager.GetLogger(context.Root.ConcreteType));
 
 			Scan(scanner =>
 			{
