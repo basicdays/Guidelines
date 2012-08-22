@@ -13,9 +13,12 @@ namespace Guidelines.Core.Commands
 		private readonly IEnumerable<IPermision<TDomain>> _permisionSet;
 		private readonly IEnumerable<ICommandPermision<TDeleteCommand, TDomain>> _commandPermisions;
 
-		public DeleteCommandHandler(IRepository<TDomain, TId> repository, IEnumerable<IPermision<TDomain>> permisionSet, IEnumerable<ICommandPermision<TDeleteCommand, TDomain>> commandPermisions)
+		private readonly IEnumerable<ICommandAction<TDeleteCommand, TDomain>> _preCommitActions;
+
+		public DeleteCommandHandler(IRepository<TDomain, TId> repository, IEnumerable<IPermision<TDomain>> permisionSet, IEnumerable<ICommandPermision<TDeleteCommand, TDomain>> commandPermisions, IEnumerable<ICommandAction<TDeleteCommand, TDomain>> preCommitActions)
 		{
 			_repository = repository;
+			_preCommitActions = preCommitActions;
 			_commandPermisions = commandPermisions;
 			_permisionSet = permisionSet;
 		}
@@ -32,6 +35,11 @@ namespace Guidelines.Core.Commands
 			if (!isModifiable)
 			{
 				throw new SecurityException(Resources.Error_AccessDenied);
+			}
+
+			foreach (var preCommitAction in _preCommitActions)
+			{
+				preCommitAction.Execute(commandMessage, entity);
 			}
 
 			_repository.Delete(entity);

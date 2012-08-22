@@ -37,6 +37,7 @@ namespace Guidelines.IntegrationTests.Commands
 				scanner.ConnectImplementationsToTypesClosing(typeof (IPermision<>));
 				scanner.ConnectImplementationsToTypesClosing(typeof (IUpdateCommandHandler<,>));
 				scanner.ConnectImplementationsToTypesClosing(typeof (ICreateCommandHandler<,>));
+				scanner.ConnectImplementationsToTypesClosing(typeof (ICommandAction<,>));
 				scanner.WithDefaultConventions();
 			});
 		}

@@ -74,6 +74,7 @@
     <Compile Include="Commands\Fixtures\BlockedCommandTests.cs" />
     <Compile Include="Commands\Fixtures\BlockedEntityTests.cs" />
     <Compile Include="Commands\Fixtures\BootStrappingTest.cs" />
+    <Compile Include="Commands\Fixtures\CommandActionTests.cs" />
     <Compile Include="Commands\Fixtures\CommandPreprocessorTests.cs" />
     <Compile Include="Commands\Fixtures\CommitHookTests.cs" />
     <Compile Include="Commands\Fixtures\CreateCommandWithSpecificMapperTests.cs" />

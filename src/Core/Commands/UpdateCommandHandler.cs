@@ -17,9 +17,12 @@ namespace Guidelines.Core.Commands
 		private readonly IEnumerable<ICommandPermision<TUpdateCommand, TDomain>> _commandPermisions;
 		private readonly IUpdateCommandHandler<TUpdateCommand, TDomain> _updater;
 
-		public UpdateCommandHandler(IRepository<TDomain, TId> repository, IValidationEngine validationEngine, IEnumerable<IPermision<TDomain>> permisionSet, IUpdateHandlerFactory<TUpdateCommand, TDomain> updaterFactory, IEnumerable<ICommandPermision<TUpdateCommand, TDomain>> commandPermisions)
+		private readonly IEnumerable<ICommandAction<TUpdateCommand, TDomain>> _preCommitActions;
+
+		public UpdateCommandHandler(IRepository<TDomain, TId> repository, IValidationEngine validationEngine, IEnumerable<IPermision<TDomain>> permisionSet, IUpdateHandlerFactory<TUpdateCommand, TDomain> updaterFactory, IEnumerable<ICommandPermision<TUpdateCommand, TDomain>> commandPermisions, IEnumerable<ICommandAction<TUpdateCommand, TDomain>> preCommitActions)
 		{
 			_repository = repository;
+			_preCommitActions = preCommitActions;
 			_commandPermisions = commandPermisions;
 			_updater = updaterFactory.BuildUpdater();
 			_permisionSet = permisionSet;
@@ -41,6 +44,11 @@ namespace Guidelines.Core.Commands
 			}
 
 			TDomain updatedEntity = _updater.Update(commandMessage, entity);
+
+			foreach (var preCommitAction in _preCommitActions)
+			{
+				preCommitAction.Execute(commandMessage, entity);
+			}
 
 			_validationEngine.Validate(updatedEntity);
 			_repository.Update(updatedEntity);

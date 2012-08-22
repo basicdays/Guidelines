@@ -64,6 +64,7 @@
     <Compile Include="Commands\GuidExtensions\IGetCommand.cs" />
     <Compile Include="Commands\GuidExtensions\IRepository.cs" />
     <Compile Include="Commands\GuidExtensions\IUpdateCommand.cs" />
+    <Compile Include="Commands\ICommandAction.cs" />
     <Compile Include="Commands\ICommandHandler.cs" />
     <Compile Include="Commands\ICommandMessageProcessor.cs" />
     <Compile Include="Commands\ICommandPermision.cs" />

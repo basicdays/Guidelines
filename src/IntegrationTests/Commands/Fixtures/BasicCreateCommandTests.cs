@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Guidelines.Core.Commands;
 using NUnit.Framework;
 using Guidelines.Core.Commands.GuidExtensions;

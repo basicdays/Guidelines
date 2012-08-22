@@ -17,9 +17,12 @@ namespace Guidelines.Core.Commands
 		private readonly IEnumerable<ICommandPermision<TCreateCommand, TDomain>> _commandPermisions;
 		private readonly ICreateCommandHandler<TCreateCommand, TDomain> _creator;
 
-		public CreateCommandHandler(IRepository<TDomain, TId> repository, IValidationEngine validationEngine, IEnumerable<IPermision<TDomain>> permisionSet, ICreateHandlerFactory<TCreateCommand, TDomain> creator, IEnumerable<ICommandPermision<TCreateCommand, TDomain>> commandPermisions)
+		private readonly IEnumerable<ICommandAction<TCreateCommand, TDomain>> _preCommitActions;
+
+		public CreateCommandHandler(IRepository<TDomain, TId> repository, IValidationEngine validationEngine, IEnumerable<IPermision<TDomain>> permisionSet, ICreateHandlerFactory<TCreateCommand, TDomain> creator, IEnumerable<ICommandPermision<TCreateCommand, TDomain>> commandPermisions, IEnumerable<ICommandAction<TCreateCommand, TDomain>> preCommitActions)
 		{
 			_repository = repository;
+			_preCommitActions = preCommitActions;
 			_commandPermisions = commandPermisions;
 			_creator = creator.BuildCreator();
 			_permisionSet = permisionSet;
@@ -38,6 +41,10 @@ namespace Guidelines.Core.Commands
 			if (!wasCreatedSuccsfully)
 			{
 				throw new SecurityException(Resources.Error_AccessDenied);
+			}
+
+			foreach (var preCommitAction in _preCommitActions) {
+				preCommitAction.Execute(commandMessage, entity);
 			}
 
 			_validationEngine.Validate(entity);
