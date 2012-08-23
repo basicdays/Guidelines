@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using Guidelines.Core;
 
@@ -42,9 +43,11 @@ namespace Guidelines.DataAccess.EntityFramework
 			return toUpdate;
 		}
 
-		public void Delete(TDomain toDelete)
+		public long Delete(TDomain toDelete)
 		{
 			Set.Remove(toDelete);
+
+			return Context.Entry(toDelete).State == EntityState.Deleted ? 1 : 0;
 		}
 	}
 

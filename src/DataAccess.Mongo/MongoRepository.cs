@@ -41,10 +41,11 @@ namespace Guidelines.DataAccess.Mongo
 			return toUpdate;
 		}
 
-		public void Delete(TDomain toDelete)
+		public long Delete(TDomain toDelete)
 		{
 			var id = BsonValue.Create(toDelete.Id);
-			_collection.Remove(Query.EQ("_id", id));
+			var result = _collection.Remove(Query.EQ("_id", id));
+			return result.DocumentsAffected;
 		}
 	}
 }

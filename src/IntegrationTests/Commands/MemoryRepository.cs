@@ -50,12 +50,13 @@ namespace Guidelines.IntegrationTests.Commands
 			return toUpdate;
 		}
 
-		public void Delete(TDomain toDelete)
+		public long Delete(TDomain toDelete)
 		{
 			if (toDelete.Id != null)
 			{
-				_memoryCache.Remove(toDelete.Id);
+				return _memoryCache.Remove(toDelete.Id) ? 0 : 1;
 			}
+			return 0;
 		}
 
 		public void Clear()

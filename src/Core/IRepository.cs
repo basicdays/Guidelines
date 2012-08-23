@@ -8,7 +8,7 @@ namespace Guidelines.Core
 		IQueryable<TDomain> GetQueryableSet();
 		TDomain Insert(TDomain toInsert);
 		TDomain Update(TDomain toUpdate);
-		void Delete(TDomain toDelete);
+		long Delete(TDomain toDelete);
 	}
 
 	public interface IRepository<TDomain, in TId> : IRepository<TDomain>
