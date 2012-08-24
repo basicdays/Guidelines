@@ -5,7 +5,7 @@ using Guidelines.Core;
 
 namespace Guidelines.DataAccess.EntityFramework
 {
-	public class EntityFrameworkRepository<TDomain> : IRepository<TDomain>
+	public class EntityFrameworkRepository<TDomain> : IQueryableRepository<TDomain>
 		where TDomain : class 
 	{
 		private readonly IDbContext _dbContext;

@@ -7,7 +7,7 @@ using MongoDB.Driver.Linq;
 
 namespace Guidelines.DataAccess.Mongo
 {
-	public class MongoRepository<TDomain, TId> : IRepository<TDomain, TId>
+	public class MongoRepository<TDomain, TId> : IRepository<TDomain, TId>, IQueryableRepository<TDomain>
 		where TDomain : IIdentifiable<TId>
 	{
 		private readonly MongoCollection<TDomain> _collection;

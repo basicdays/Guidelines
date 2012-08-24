@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security;
 using Guidelines.Core.Properties;
 using Guidelines.Core.Specifications;
@@ -45,10 +46,7 @@ namespace Guidelines.Core.Commands
 
 			TDomain updatedEntity = _updater.Update(commandMessage, entity);
 
-			foreach (var preCommitAction in _preCommitActions)
-			{
-				preCommitAction.Execute(commandMessage, entity);
-			}
+			updatedEntity = _preCommitActions.Aggregate(updatedEntity, (current, preCommitAction) => preCommitAction.Execute(commandMessage, current));
 
 			_validationEngine.Validate(updatedEntity);
 			_repository.Update(updatedEntity);

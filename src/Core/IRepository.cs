@@ -5,7 +5,6 @@ namespace Guidelines.Core
 {
 	public interface IRepository<TDomain>
 	{
-		IQueryable<TDomain> GetQueryableSet();
 		TDomain Insert(TDomain toInsert);
 		TDomain Update(TDomain toUpdate);
 		long Delete(TDomain toDelete);
@@ -15,5 +14,10 @@ namespace Guidelines.Core
 		where TDomain : IIdentifiable<TId>
 	{
 		TDomain GetById(TId id);
+	}
+
+	public interface IQueryableRepository<TDomain> : IRepository<TDomain>
+	{
+		IQueryable<TDomain> GetQueryableSet();
 	}
 }

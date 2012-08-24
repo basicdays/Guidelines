@@ -5,7 +5,7 @@ using Guidelines.Core;
 
 namespace Guidelines.IntegrationTests.Commands
 {
-	public class MemoryRepository<TDomain, TId> : IRepository<TDomain, TId>
+	public class MemoryRepository<TDomain, TId> : IRepository<TDomain, TId>, IQueryableRepository<TDomain>
 		where TDomain : IIdentifiable<TId>
 	{
 		public static Dictionary<TId, TDomain> _memoryCache = new Dictionary<TId, TDomain>();

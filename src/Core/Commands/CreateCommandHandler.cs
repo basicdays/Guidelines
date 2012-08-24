@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security;
 using Guidelines.Core.Properties;
 using Guidelines.Core.Specifications;
@@ -43,9 +44,7 @@ namespace Guidelines.Core.Commands
 				throw new SecurityException(Resources.Error_AccessDenied);
 			}
 
-			foreach (var preCommitAction in _preCommitActions) {
-				preCommitAction.Execute(commandMessage, entity);
-			}
+			entity = _preCommitActions.Aggregate(entity, (current, preCommitAction) => preCommitAction.Execute(commandMessage, current));
 
 			_validationEngine.Validate(entity);
 			_repository.Insert(entity);
